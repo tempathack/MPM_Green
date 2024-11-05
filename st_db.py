@@ -1,101 +1,61 @@
-
 import streamlit as st
 from typing import List, Dict, Any
 import json
+import tempfile
+from pathlib import Path
+import logging
+from src.process_data import create_summaries
+from src.create_chains import (
+    ContentGenerator,
+    InstagramPostOutput,
+    LinkedInPostOutput,
+    CompanyBlogOutput,
+    create_content_batch,
+    validate_content_batch,
+    save_content_batch,
+    get_content_statistics,
+)
+from src.st_utils import  *
 
+def process_pdf_and_generate_content(pdf_path: str, generator: ContentGenerator):
+    """
+    Process PDF and generate content for all summaries
 
-def display_hashtags(hashtags: List[str]):
-    """Display hashtags with consistent styling"""
-    hashtags_html = ' '.join([
-        f'<span style="background-color: #f0f2f6; padding: 5px 10px; '
-        f'border-radius: 15px; margin-right: 10px;">{tag}</span>'
-        for tag in hashtags
-    ])
-    st.markdown(hashtags_html, unsafe_allow_html=True)
+    Args:
+        pdf_path: Path to PDF file
+        generator: Initialized ContentGenerator instance
 
+    Returns:
+        List of tuples containing results and stats for each summary
+    """
+    try:
+        # Generate summaries from PDF
+        summaries = create_summaries(pdf_path)
 
-def display_content_set(content_set: Dict[str, Any], index: int):
-    """Display a single set of content"""
-    st.markdown(f"### Content Set {index + 1}")
+        all_results = []
 
-    # Create tabs for different platforms
-    tabs = st.tabs(["Instagram", "LinkedIn", "Blog"])
+        # Process each summary
+        for summary in summaries:
+            # Generate content
+            results = create_content_batch(
+                title=summary.title,
+                content=summary.summary,
+                generator=generator
+            )
 
-    # Instagram Content
-    with tabs[0]:
-        if content_set.get('instagram'):
-            instagram = content_set['instagram']
-            st.subheader("📱 Instagram Post")
+            # Validate content
+            validate_content_batch(results)
 
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                st.markdown("**Caption:**")
-                st.write(instagram.caption)
+            # Generate statistics
+            stats = get_content_statistics(results)
 
-                st.markdown("**Hashtags:**")
-                display_hashtags(instagram.hashtags)
+            all_results.append((results, stats))
 
-                st.markdown("**Mood:**")
-                st.write(instagram.mood)
+        return all_results
 
-                st.markdown("**Engagement Hooks:**")
-                for hook in instagram.engagement_hooks:
-                    st.markdown(f"- {hook}")
-
-            with col2:
-                st.markdown("**Visual Preview:**")
-                st.image("/api/placeholder/400/400", caption="Generated Image")
-
-    # LinkedIn Content
-    with tabs[1]:
-        if content_set.get('linkedin'):
-            linkedin = content_set['linkedin']
-            st.subheader("💼 LinkedIn Post")
-
-            st.markdown(f"**{linkedin.title}**")
-            st.write(linkedin.content)
-
-            col1, col2 = st.columns(2)
-            with col1:
-                st.markdown("**Key Insights:**")
-                for insight in linkedin.key_insights:
-                    st.markdown(f"- {insight}")
-
-                st.markdown("**Call to Action:**")
-                st.write(linkedin.call_to_action)
-
-            with col2:
-                st.markdown("**Visual Preview:**")
-                st.image("/api/placeholder/1200/627", caption="Generated Image")
-
-                st.markdown("**Hashtags:**")
-                display_hashtags(linkedin.hashtags)
-
-    # Blog Content
-    with tabs[2]:
-        if content_set.get('blog'):
-            blog = content_set['blog']
-            st.subheader("📝 Blog Post")
-
-            st.markdown(f"## {blog.title}")
-            st.markdown(f"*{blog.meta_description}*")
-
-            # Keywords
-            st.markdown("**Keywords:**")
-            display_hashtags(blog.keywords)
-
-            # Featured Image
-            st.image("/api/placeholder/1200/600", caption="Featured Image")
-
-            # Sections
-            for section in blog.sections:
-                with st.expander(f"{section.heading}", expanded=True):
-                    st.markdown(section.content)
-
-            # Word count and SEO
-            st.markdown(f"**Word Count:** {blog.word_count} words")
-            with st.expander("SEO Details"):
-                st.json(blog.seo_elements)
+    except Exception as e:
+        logging.error(f"Error processing PDF and generating content: {str(e)}")
+        raise
 
 
 def main():
@@ -103,64 +63,110 @@ def main():
 
     st.title("Content Generation Dashboard")
 
-    # Introduction
-    st.markdown("""
-    ## Multi-Platform Content Analysis
+    # Initialize generator in session state if not exists
+    if 'generator' not in st.session_state:
+        st.session_state.generator = ContentGenerator(
+            model_name="gpt-4o",
+            temperature=0.3
+        )
 
-    This dashboard displays generated content optimized for different platforms:
-    - Instagram: Visual-focused social media content
-    - LinkedIn: Professional network posts
-    - Blog: In-depth article content
-    """)
+    # Sidebar controls
+    with st.sidebar:
+        st.header("Settings")
+        temperature = st.slider("Temperature", 0.0, 1.0, 0.3)
+        max_retries = st.number_input("Max Retries", 1, 5, 3)
+
+        if st.button("Update Settings"):
+            # Create new generator with updated temperature
+            st.session_state.generator = ContentGenerator(
+                model_name="gpt-4o",
+                temperature=temperature
+            )
+            st.success(f"Temperature updated to {temperature}")
 
     # File uploader
     uploaded_file = st.file_uploader("Choose your PDF file", type=['pdf'])
 
     if uploaded_file is not None:
-        try:
-            # Process the PDF and get content sets
-            # For now, using sample data
-            content_sets = [
-                # Your list of content dictionaries here
-            ]
+        with st.spinner("Processing PDF and generating content..."):
+            try:
+                # Create temporary file
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
+                    tmp_file.write(uploaded_file.getvalue())
+                    temp_path = Path(tmp_file.name)
 
-            # Display each content set
-            for i, content_set in enumerate(content_sets):
+                # Process PDF and generate content
+                all_results = process_pdf_and_generate_content(
+                    str(temp_path),
+                    st.session_state.generator
+                )
+
+                # Display success message
+                st.success(f"Generated content for {len(all_results)} summaries!")
+
+                # Display each set of results
+                for i, (results, stats) in enumerate(all_results):
+                    st.divider()
+                    display_content_set(results, i, stats)
+
+                    # Download buttons for each set
+                    col1, col2, col3 = st.columns(3)
+
+                    with col1:
+                        if results.get('instagram'):
+                            st.download_button(
+                                f"Download Instagram Content {i + 1}",
+                                data=json.dumps(results['instagram'].dict(), indent=2),
+                                file_name=f"instagram_content_{i + 1}.json",
+                                mime="application/json"
+                            )
+
+                    with col2:
+                        if results.get('linkedin'):
+                            st.download_button(
+                                f"Download LinkedIn Content {i + 1}",
+                                data=json.dumps(results['linkedin'].dict(), indent=2),
+                                file_name=f"linkedin_content_{i + 1}.json",
+                                mime="application/json"
+                            )
+
+                    with col3:
+                        if results.get('blog'):
+                            st.download_button(
+                                f"Download Blog Content {i + 1}",
+                                data=json.dumps(results['blog'].dict(), indent=2),
+                                file_name=f"blog_content_{i + 1}.json",
+                                mime="application/json"
+                            )
+
+                # Option to download all content
                 st.divider()
-                display_content_set(content_set, i)
+                if st.button("Download All Content"):
+                    # Combine all results
+                    combined_results = {
+                        f"summary_{i}": {
+                            "results": results,
+                            "stats": stats
+                        }
+                        for i, (results, stats) in enumerate(all_results)
+                    }
 
-                # Download buttons for each content set
-                col1, col2, col3 = st.columns(3)
+                    # Create download button
+                    st.download_button(
+                        "Download Complete Results",
+                        data=json.dumps(combined_results, indent=2),
+                        file_name="all_content.json",
+                        mime="application/json"
+                    )
 
-                with col1:
-                    if content_set.get('instagram'):
-                        st.download_button(
-                            f"Download Instagram Content {i + 1}",
-                            data=json.dumps(content_set['instagram'].dict(), indent=2),
-                            file_name=f"instagram_content_{i + 1}.json",
-                            mime="application/json"
-                        )
+            except Exception as e:
+                st.error(f"An error occurred: {str(e)}")
+                logging.error(f"Error in main execution: {str(e)}", exc_info=True)
 
-                with col2:
-                    if content_set.get('linkedin'):
-                        st.download_button(
-                            f"Download LinkedIn Content {i + 1}",
-                            data=json.dumps(content_set['linkedin'].dict(), indent=2),
-                            file_name=f"linkedin_content_{i + 1}.json",
-                            mime="application/json"
-                        )
-
-                with col3:
-                    if content_set.get('blog'):
-                        st.download_button(
-                            f"Download Blog Content {i + 1}",
-                            data=json.dumps(content_set['blog'].dict(), indent=2),
-                            file_name=f"blog_content_{i + 1}.json",
-                            mime="application/json"
-                        )
-
-        except Exception as e:
-            st.error(f"An error occurred: {str(e)}")
+            finally:
+                # Clean up temporary file
+                if 'temp_path' in locals():
+                    temp_path.unlink()
 
 
 if __name__ == "__main__":

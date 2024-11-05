@@ -1,5 +1,7 @@
 from src.process_data import create_summaries
-from src.create_chains import ContentGenerator,InstagramPostOutput,LinkedInPostOutput,CompanyBlogOutput
+from src.create_chains import (ContentGenerator,InstagramPostOutput,LinkedInPostOutput,
+                               CompanyBlogOutput,create_content_batch,validate_content_batch,
+                               save_content_batch,get_content_statistics,)
 from src.configs import PDF_PATH
 from typing import Dict, Union, Optional
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -8,49 +10,38 @@ import logging
 res=create_summaries(PDF_PATH)
 
 
-def generate_all_platforms(
-        title: str,
-        content: str,
-        temperature: float = 0.4,
-        model_name: str = "gpt-4o"
-) -> Dict[str, Union[InstagramPostOutput, LinkedInPostOutput, CompanyBlogOutput]]:
-    """
-    Simple wrapper to generate content for all platforms
+# Initialize generator
+generator = ContentGenerator(model_name="gpt-4o")
 
-    Args:
-        title: Content title
-        content: Main content text
-        temperature: Model temperature (default: 0.4)
-        model_name: Model to use (default: gpt-4o)
+# Generate content
+results = create_content_batch(
 
-    Returns:
-        Dict with platform names as keys and generated content as values
-    """
-    # Initialize generator
-    generator = ContentGenerator(
-        model_name=model_name,
-        temperature=temperature
-    )
+    title="Your Title",
+    content="Your Content",
+    generator=generator
+)
 
-    # Generate for each platform
-    results = {}
-    for platform in ["instagram", "linkedin", "blog"]:
-        try:
-            result = generator.generate_content(
-                title=title,
-                content=content,
-                platform=platform
-            )
-            results[platform] = result
-        except Exception as e:
-            logging.error(f"Error generating {platform} content: {str(e)}")
-            results[platform] = None
+# Validate and save
+validate_content_batch(results)
+saved_paths = save_content_batch(results)
 
-    return results
+# Get statistics
+stats = get_content_statistics(results)
+
+
 for re  in res:
-    output=generate_all_platforms(title=re.title,content=re.summary)
-    print(output)
+    results = create_content_batch(
+        title=re.title,
+        content=re.summary,
+        generator=generator
+    )
+    # Validate and save
+    validate_content_batch(results)
+    saved_paths = save_content_batch(results)
 
+    # Get statistics
+    stats = get_content_statistics(results)
+    print(results)
 
 
 

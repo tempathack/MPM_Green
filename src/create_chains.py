@@ -1,25 +1,170 @@
+
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field, validator
-from typing import List, Dict, Literal
+from pydantic import BaseModel, Field, validator, ValidationError
+from typing import List, Dict, Literal, Union, Optional,Any
 from datetime import datetime
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.output_parsers import PydanticOutputParser
-from typing import Literal, Union, Dict, Optional,List
+from langchain.schema import BaseRetriever
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 import logging
-
 import re
-load_dotenv()
 
+# Initialize environment and logging
+load_dotenv()
+logging.basicConfig(level=logging.INFO)
+
+# Base Models
 class BlogSection(BaseModel):
     """Model for a blog post section"""
     type: Literal["introduction", "body", "conclusion"]
     heading: str = Field(description="Section heading")
     content: str = Field(description="Section content")
-_=load_dotenv()
+class InstagramPostOutput(BaseModel):
+    """Pydantic model for Instagram post output"""
+    caption: str = Field(
+        description="Main caption text for the Instagram post",
+        max_length=125
+    )
+    hashtags: List[str] = Field(
+        description="List of relevant hashtags",
+        min_items=1,
+        max_items=30
+    )
+    image_prompt: str = Field(
+        description="Detailed prompt for image generation API"
+    )
+    visual_elements: List[str] = Field(
+        description="List of key visual elements to include",
+        min_items=1
+    )
+    mood: str = Field(
+        description="Overall mood/tone of the post"
+    )
+    engagement_hooks: List[str] = Field(
+        description="Engagement-driving elements in the post",
+        min_items=1
+    )
+    timestamp: str = Field(
+        default_factory=lambda: datetime.now().isoformat()
+    )
 
-# Platform Descriptions
-INSTAGRAM_DESCRIPTION ="""### Instructions for Instagram Post Creation
+    @validator('caption')
+    def validate_caption_length(cls, v):
+        if len(v) > 125:
+            raise ValueError(f'Caption must not exceed 125 characters, got {len(v)}')
+        return v
+
+    @validator('hashtags')
+    def validate_hashtags(cls, v):
+        fixed_hashtags = []
+        for hashtag in v:
+            if not hashtag.startswith('#'):
+                fixed_hashtags.append(f"#{hashtag.lstrip('#')}")
+            else:
+                fixed_hashtags.append(hashtag)
+        return fixed_hashtags
+class LinkedInPostOutput(BaseModel):
+    """Pydantic model for LinkedIn post output"""
+    content: str = Field(
+        description="Main post content",
+        max_length=3000
+    )
+    title: str = Field(
+        description="Post headline or title",
+        max_length=100
+    )
+    key_insights: List[str] = Field(
+        description="Key professional insights shared in the post",
+        min_items=1,
+        max_items=5
+    )
+    image_prompt: str = Field(
+        description="Prompt for 1200x627 professional image generation"
+    )
+    call_to_action: str = Field(
+        description="Clear call to action for engagement"
+    )
+    hashtags: List[str] = Field(
+        description="Professional hashtags",
+        min_items=1,
+        max_items=10
+    )
+    interactive_elements: Optional[dict] = Field(
+        description="Optional poll or other interactive elements",
+        default=None
+    )
+    timestamp: str = Field(
+        default_factory=lambda: datetime.now().isoformat()
+    )
+
+    @validator('content')
+    def validate_content_length(cls, v):
+        if len(v) > 3000:
+            raise ValueError(f'LinkedIn post must not exceed 3000 characters, got {len(v)}')
+        return v
+
+    @validator('hashtags')
+    def validate_professional_hashtags(cls, v):
+        fixed_hashtags = []
+        for hashtag in v:
+            if not hashtag.startswith('#'):
+                hashtag = f"#{hashtag.lstrip('#')}"
+            if len(hashtag) > 30:
+                raise ValueError(f'Hashtag too long: {hashtag}')
+            fixed_hashtags.append(hashtag)
+        return fixed_hashtags
+class CompanyBlogOutput(BaseModel):
+    """Updated Pydantic model for company blog post output"""
+    title: str = Field(
+        description="Blog post title",
+        max_length=100
+    )
+    meta_description: str = Field(
+        description="SEO meta description",
+        max_length=160
+    )
+    keywords: List[str] = Field(
+        description="SEO keywords",
+        min_items=3,
+        max_items=10
+    )
+    sections: List[BlogSection] = Field(
+        description="Blog post sections with type, heading, and content",
+        min_items=3
+    )
+    word_count: int = Field(
+        description="Total word count of the blog post"
+    )
+    image_prompt: str = Field(
+        description="Detailed prompt for feature image generation"
+    )
+    seo_elements: Dict[str, str] = Field(
+        description="SEO-related elements including title tag, meta description"
+    )
+    timestamp: str = Field(
+        default_factory=lambda: datetime.now().isoformat()
+    )
+
+    @validator('word_count')
+    def validate_word_count(cls, v):
+        if not 600 <= v <= 2000:
+            raise ValueError(f'Blog post must be between 600-2000 words, got {v}')
+        return v
+
+    @validator('sections')
+    def validate_sections(cls, v):
+        section_types = {section.type for section in v}
+        required_types = {'introduction', 'body', 'conclusion'}
+        if not required_types.issubset(section_types):
+            raise ValueError(f'Missing required sections. Must include: {required_types}')
+        return v
+
+
+
+# System Prompts
+INSTAGRAM_DESCRIPTION = """### Instructions for Instagram Post Creation
 
 As an expert Instagram post creator, your task is to craft an engaging Instagram post that captivates audiences through visual appeal and concise, compelling captions. Your caption should be no more than 125 characters to maximize engagement. Additionally, you will generate a detailed prompt for an image generator API to create a visually striking image that complements your post.
 
@@ -42,7 +187,7 @@ Caption: "Sunset vibes 🌅✨ Embrace the evening glow and let your spirit shin
 Image Generator API Prompt: "Create a breathtaking scene of a sunset over a tranquil beach, with vibrant orange and pink hues reflecting on calm waters. Include silhouettes of palm trees gently swaying in the breeze, and a clear sky with a few scattered clouds to enhance the sunset's beauty."
 """
 
-COMPANY_BLOG_DESCRIPTION  = """### Expert Blog Post and Visual Creation for a Company Blog
+COMPANY_BLOG_DESCRIPTION = """### Expert Blog Post and Visual Creation for a Company Blog
 
 As an expert company blog post writer, your task is to create a comprehensive and SEO-optimized article that delivers valuable insights and maintains proper structure.
 
@@ -92,15 +237,7 @@ As an expert company blog post writer, your task is to create a comprehensive an
         "meta_description": "SEO Meta Description"
     }
 }
-
-### Special Instructions:
-1. Maintain proper section types (introduction, body, conclusion)
-2. Ensure sufficient word count (minimum 600 words)
-3. Create engaging section headings
-4. Include relevant SEO elements
-5. Generate appropriate image prompt
-
-Please structure your response exactly according to this format, ensuring all required fields and sections are included."""
+"""
 
 LINKEDIN_DESCRIPTION = """### Instructions for LinkedIn Expert Post Creation
 
@@ -114,181 +251,34 @@ As a LinkedIn expert post writer, your task is to craft an engaging and professi
 
 4. **Engagement Strategies**: Consider integrating video content or interactive elements like polls to boost engagement rates.
 
-5. **Image Generation**: After crafting the post, create a prompt for an image generator API that will produce an image complementing your post content. The image should visually represent the core message or theme of your post.
+5. **Image Generation**: After crafting the post, create a prompt for an image generator API that will produce an image complementing your post content.
+"""
 
-### Example LinkedIn Post
-
-"Navigating today's fast-paced digital landscape requires not just skills but a mindset geared towards continuous learning. 🌟
-
-In my journey as a [Your Profession/Industry], I've learned that embracing change and fostering innovation are key to staying ahead. Whether it's adapting to new technologies or refining our strategies, growth begins with an open mind.
-
-Join me as I explore the latest trends in [Industry], and let's discuss how we can harness these insights to drive success. Your thoughts?"
-
-### Image Generator API Prompt
-
-"Generate an image depicting a dynamic and futuristic digital landscape, symbolizing innovation and growth in the [Industry] sector. Use modern design elements and a vibrant color palette to convey progress and forward-thinking."""
-
-PLATFORM_PROMPTS={}
-PLATFORM_PROMPTS['linkedin']=LINKEDIN_DESCRIPTION
-PLATFORM_PROMPTS['blog']=COMPANY_BLOG_DESCRIPTION
-PLATFORM_PROMPTS['instagram']=INSTAGRAM_DESCRIPTION
-
-class InstagramPostOutput(BaseModel):
-    """Pydantic model for Instagram post output"""
-    caption: str = Field(
-        description="Main caption text for the Instagram post",
-        max_length=125
-    )
-    hashtags: List[str] = Field(
-        description="List of relevant hashtags",
-        min_items=1,
-        max_items=30
-    )
-    image_prompt: str = Field(
-        description="Detailed prompt for image generation API"
-    )
-    visual_elements: List[str] = Field(
-        description="List of key visual elements to include",
-        min_items=1
-    )
-    mood: str = Field(
-        description="Overall mood/tone of the post"
-    )
-    engagement_hooks: List[str] = Field(
-        description="Engagement-driving elements in the post",
-        min_items=1
-    )
-    timestamp: str = Field(
-        default_factory=lambda: datetime.now().isoformat()
-    )
-
-    @validator('caption')
-    def validate_caption_length(cls, v):
-        if len(v) > 125:
-            raise ValueError(f'Caption must not exceed 125 characters, got {len(v)}')
-        return v
-
-    @validator('hashtags')
-    def validate_hashtags(cls, v):
-        for hashtag in v:
-            if not hashtag.startswith('#'):
-                raise ValueError(f'Hashtag must start with #: {hashtag}')
-        return v
-class CompanyBlogOutput(BaseModel):
-    """Updated Pydantic model for company blog post output"""
-    title: str = Field(
-        description="Blog post title",
-        max_length=100
-    )
-    meta_description: str = Field(
-        description="SEO meta description",
-        max_length=160
-    )
-    keywords: List[str] = Field(
-        description="SEO keywords",
-        min_items=3,
-        max_items=10
-    )
-    sections: List[BlogSection] = Field(
-        description="Blog post sections with type, heading, and content",
-        min_items=3
-    )
-    word_count: int = Field(
-        description="Total word count of the blog post"
-    )
-    image_prompt: str = Field(
-        description="Detailed prompt for feature image generation"
-    )
-    seo_elements: Dict[str, str] = Field(
-        description="SEO-related elements including title tag, meta description"
-    )
-    timestamp: str = Field(
-        default_factory=lambda: datetime.now().isoformat()
-    )
-
-    @validator('word_count')
-    def validate_word_count(cls, v):
-        if not 600 <= v <= 2000:
-            raise ValueError(f'Blog post must be between 600-2000 words, got {v}')
-        return v
-
-    @validator('sections')
-    def validate_sections(cls, v):
-        section_types = {section.type for section in v}
-        required_types = {'introduction', 'body', 'conclusion'}
-        if not required_types.issubset(section_types):
-            raise ValueError(f'Missing required sections. Must include: {required_types}')
-        return v
-class LinkedInPostOutput(BaseModel):
-    """Pydantic model for LinkedIn post output"""
-    content: str = Field(
-        description="Main post content",
-        max_length=3000
-    )
-    title: str = Field(
-        description="Post headline or title",
-        max_length=100
-    )
-    key_insights: List[str] = Field(
-        description="Key professional insights shared in the post",
-        min_items=1,
-        max_items=5
-    )
-    image_prompt: str = Field(
-        description="Prompt for 1200x627 professional image generation"
-    )
-    call_to_action: str = Field(
-        description="Clear call to action for engagement"
-    )
-    hashtags: List[str] = Field(
-        description="Professional hashtags",
-        min_items=1,
-        max_items=10
-    )
-    interactive_elements: Optional[dict] = Field(
-        description="Optional poll or other interactive elements",
-        default=None
-    )
-    timestamp: str = Field(
-        default_factory=lambda: datetime.now().isoformat()
-    )
-
-    @validator('content')
-    def validate_content_length(cls, v):
-        if len(v) > 3000:
-            raise ValueError(f'LinkedIn post must not exceed 3000 characters, got {len(v)}')
-        return v
-
-    @validator('hashtags')
-    def validate_professional_hashtags(cls, v):
-        for hashtag in v:
-            if not hashtag.startswith('#'):
-                raise ValueError(f'Hashtag must start with #: {hashtag}')
-            if len(hashtag) > 30:
-                raise ValueError(f'Hashtag too long: {hashtag}')
-        return v
+# Platform prompts dictionary
+PLATFORM_PROMPTS = {
+    'linkedin': LINKEDIN_DESCRIPTION,
+    'blog': COMPANY_BLOG_DESCRIPTION,
+    'instagram': INSTAGRAM_DESCRIPTION
+}
 
 
 class ContentGenerator:
-    """Class to handle content generation for different platforms"""
+    """Enhanced class to handle content generation with retry logic and retriever"""
 
     def __init__(
             self,
             model_name: str = "gpt-4",
             temperature: float = 0.3,
-            platforms: Optional[List[str]] = None
+            platforms: Optional[List[str]] = None,
+            retriever: Optional[BaseRetriever] = None,
+            max_retries: int = 3
     ):
-        """
-        Initialize the content generator
-
-        Args:
-            model_name: OpenAI model to use
-            temperature: Creativity level
-            platforms: List of platforms to initialize (defaults to all)
-        """
+        """Initialize content generator with specified settings"""
         self.model_name = model_name
         self.temperature = temperature
         self.platforms = platforms or ["instagram", "linkedin", "blog"]
+        self.retriever = retriever
+        self.max_retries = max_retries
 
         # Initialize model
         self.model = ChatOpenAI(
@@ -318,9 +308,27 @@ class ContentGenerator:
         return PydanticOutputParser(pydantic_object=parser_class)
 
     def _create_prompt_template(self, platform: str) -> ChatPromptTemplate:
-        """Create prompt template for platform"""
-        return ChatPromptTemplate.from_template(
+        """Create prompt template with optional retriever context"""
+        if self.retriever:
+            template = """
+            {system_prompt}
+
+            {format_instructions}
+
+            Relevant Context:
+            {context}
+
+            Topic or Theme to create content about: {title}
+
+            The Entire Summary of the Text: {content}
+
+            Please generate the content following the format specified above, 
+            using the relevant context where appropriate.
+
+            Remember: All output must strictly follow the format specified in the instructions.
             """
+        else:
+            template = """
             {system_prompt}
 
             {format_instructions}
@@ -330,21 +338,59 @@ class ContentGenerator:
             The Entire Summary of the Text: {content}
 
             Please generate the content following the format specified above.
+
+            Remember: All output must strictly follow the format specified in the instructions.
             """
-        )
+
+        return ChatPromptTemplate.from_template(template)
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=4, max=10),
+        retry=retry_if_exception_type((ValueError, ValidationError))
+    )
+    def _generate_with_retry(self, chain, inputs: Dict[str, Any], platform: str):
+        """Generate content with retry logic"""
+        try:
+            result = chain.invoke(inputs)
+            self._validate_required_fields(result, platform)
+            return result
+        except Exception as e:
+            logging.warning(f"Generation attempt failed: {str(e)}")
+            raise
+
+    def _validate_required_fields(self, result: Any, platform: str):
+        """Validate that all required fields are present and properly formatted"""
+        required_fields = {
+            "instagram": {
+                'caption', 'hashtags', 'image_prompt', 'visual_elements',
+                'mood', 'engagement_hooks'
+            },
+            "linkedin": {
+                'content', 'title', 'key_insights', 'image_prompt',
+                'call_to_action', 'hashtags'
+            },
+            "blog": {
+                'title', 'meta_description', 'keywords', 'sections',
+                'word_count', 'image_prompt', 'seo_elements'
+            }
+        }
+
+        fields = required_fields.get(platform, set())
+        missing_fields = fields - set(result.dict().keys())
+
+        if missing_fields:
+            raise ValueError(f"Missing required fields for {platform}: {missing_fields}")
 
     def _initialize_chains(self):
         """Initialize chains for all platforms"""
         for platform in self.platforms:
             try:
-                # Get parser
                 parser = self._get_parser(platform)
                 self.parsers[platform] = parser
 
-                # Create prompt template
                 prompt_template = self._create_prompt_template(platform)
 
-                # Create chain
                 chain = (
                         prompt_template.partial(
                             system_prompt=PLATFORM_PROMPTS[platform],
@@ -361,113 +407,286 @@ class ContentGenerator:
                 logging.error(f"Error initializing chain for {platform}: {str(e)}")
                 raise
 
+    def _get_retriever_context(self, query: str) -> str:
+        """Get relevant context from retriever if available"""
+        if not self.retriever:
+            return ""
+
+        try:
+            relevant_docs = self.retriever.get_relevant_documents(query)
+            return "\n\n".join(doc.page_content for doc in relevant_docs)
+        except Exception as e:
+            logging.error(f"Error retrieving context: {str(e)}")
+            return ""
+
     def generate_content(
             self,
             content: str,
             title: str,
             platform: Literal["instagram", "linkedin", "blog"]
     ) -> Union[InstagramPostOutput, LinkedInPostOutput, CompanyBlogOutput]:
-        """
-        Generate content for specified platform
-
-        Args:
-            content: Main content text
-            title: Content title
-            platform: Target platform
-
-        Returns:
-            Platform-specific content output
-        """
+        """Generate content with retry logic and retriever context"""
         try:
             if platform not in self.platforms:
                 raise ValueError(f"Platform {platform} not initialized")
 
-            # Get chain for platform
             chain = self.chains[platform]
 
-            # Generate content
-            result = chain.invoke({
+            inputs = {
                 "content": content,
-                "title": title,
-            })
+                "title": title
+            }
 
-            return result
+            if self.retriever:
+                context = self._get_retriever_context(f"{title} {content}")
+                inputs["context"] = context
+
+            for attempt in range(self.max_retries):
+                try:
+                    result = self._generate_with_retry(chain, inputs, platform)
+                    return result
+                except Exception as e:
+                    if attempt == self.max_retries - 1:
+                        logging.error(f"All retry attempts failed for {platform}")
+                        raise
+                    logging.warning(f"Attempt {attempt + 1} failed, retrying...")
 
         except Exception as e:
             logging.error(f"Error generating content for {platform}: {str(e)}")
             raise
 
-    def update_model_settings(self, model_name: Optional[str] = None, temperature: Optional[float] = None):
-        """
-        Update model settings and reinitialize chains
+    def set_retriever(self, retriever: BaseRetriever):
+        """Set or update the retriever"""
+        self.retriever = retriever
+        self._initialize_chains()
 
-        Args:
-            model_name: New model name (optional)
-            temperature: New temperature (optional)
-        """
+
+def create_content_batch(
+        title: str,
+        content: str,
+        generator: ContentGenerator
+) -> Dict[str, Any]:
+    """
+    Create content for all platforms in one batch
+
+    Args:
+        title: Content title
+        content: Main content
+        generator: Initialized ContentGenerator instance
+
+    Returns:
+        Dict containing results for each platform
+    """
+    results = {}
+
+    for platform in ["instagram", "linkedin", "blog"]:
         try:
-            if model_name:
-                self.model_name = model_name
-            if temperature is not None:
-                self.temperature = temperature
-
-            # Reinitialize model
-            self.model = ChatOpenAI(
-                model=self.model_name,
-                temperature=self.temperature
+            result = generator.generate_content(
+                content=content,
+                title=title,
+                platform=platform
             )
-
-            # Reinitialize chains
-            self._initialize_chains()
-
-            logging.info("Model settings updated and chains reinitialized")
+            results[platform] = result
+            logging.info(f"Successfully generated {platform} content")
 
         except Exception as e:
-            logging.error(f"Error updating model settings: {str(e)}")
-            raise
+            logging.error(f"Failed to generate {platform} content: {str(e)}")
+            results[platform] = None
+
+    return results
+
+
+class ContentValidationError(Exception):
+    """Custom error for content validation failures"""
+    pass
+
+
+def validate_content_batch(results: Dict[str, Any]) -> bool:
+    """
+    Validate a batch of generated content
+
+    Args:
+        results: Dictionary of generated content
+
+    Returns:
+        bool: True if all content is valid
+
+    Raises:
+        ContentValidationError: If validation fails
+    """
+    for platform, content in results.items():
+        if content is None:
+            raise ContentValidationError(f"Missing content for {platform}")
+
+        if platform == "instagram":
+            if not content.hashtags or len(content.hashtags) < 1:
+                raise ContentValidationError(f"Invalid hashtags for {platform}")
+
+        elif platform == "linkedin":
+            if not content.key_insights or len(content.key_insights) < 1:
+                raise ContentValidationError(f"Missing key insights for {platform}")
+
+        elif platform == "blog":
+            if not content.sections or len(content.sections) < 3:
+                raise ContentValidationError(f"Insufficient sections for {platform}")
+
+    return True
+
+
+def save_content_batch(
+        results: Dict[str, Any],
+        output_dir: str = "output"
+) -> Dict[str, str]:
+    """
+    Save generated content to files
+
+    Args:
+        results: Dictionary of generated content
+        output_dir: Directory to save files
+
+    Returns:
+        Dict mapping platforms to file paths
+    """
+    import os
+    import json
+    from datetime import datetime
+
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    saved_paths = {}
+
+    for platform, content in results.items():
+        if content is not None:
+            filename = f"{platform}_{timestamp}.json"
+            filepath = os.path.join(output_dir, filename)
+
+            with open(filepath, 'w', encoding='utf-8') as f:
+                json.dump(content.dict(), f, indent=2, ensure_ascii=False)
+
+            saved_paths[platform] = filepath
+            logging.info(f"Saved {platform} content to {filepath}")
+
+    return saved_paths
 
 
 # Example usage
 if __name__ == "__main__":
     try:
-        # Initialize generator once
+        # Initialize generator
         generator = ContentGenerator(
-            model_name="gpt-4",
-            temperature=0.3
+            model_name="gpt-4o",
+            temperature=0.3,
+            max_retries=3
         )
 
-        # Generate Instagram content
-        instagram_result = generator.generate_content(
-            title="Sustainable Living Tips",
-            content="Focus on practical, everyday sustainability tips",
-            platform="instagram"
-        )
-        print("\nInstagram Post:")
-        print(f"Caption: {instagram_result.caption}")
-        print(f"Hashtags: {instagram_result.hashtags}")
+        # Example content
+        sample_title = "The Future of Sustainable Technology"
+        sample_content = """
+        Sustainable technology is reshaping industries worldwide. From renewable energy 
+        to eco-friendly manufacturing, innovations are driving positive environmental change. 
+        Companies are increasingly adopting green practices, while consumers demand 
+        more sustainable products and services.
+        """
 
-        # Generate LinkedIn content
-        linkedin_result = generator.generate_content(
-            title="Digital Transformation Trends 2024",
-            content="Focus on AI and automation impact",
-            platform="linkedin"
-        )
-        print("\nLinkedIn Post:")
-        print(f"Title: {linkedin_result.title}")
-        print(f"Content: {linkedin_result.content[:100]}...")
+        # Optional: Add retriever (implement your own)
+        # from langchain.vectorstores import FAISS
+        # from langchain.embeddings import OpenAIEmbeddings
+        #
+        # embeddings = OpenAIEmbeddings()
+        # vectorstore = FAISS.from_texts(
+        #     ["Your reference text here"],
+        #     embeddings
+        # )
+        # generator.set_retriever(vectorstore.as_retriever())
 
-        # Generate blog content
-        blog_result = generator.generate_content(
-            title="The Future of Remote Work",
-            content="Include recent statistics and case studies",
-            platform="blog"
+        # Generate content batch
+        print("Generating content...")
+        results = create_content_batch(
+            title=sample_title,
+            content=sample_content,
+            generator=generator
         )
-        print("\nBlog Post:")
-        print(f"Title: {blog_result.title}")
-        print(f"Word Count: {blog_result.word_count}")
 
-        # Update model settings if needed
-        generator.update_model_settings(temperature=0.7)
+        # Validate results
+        print("Validating content...")
+        try:
+            validate_content_batch(results)
+            print("Content validation successful!")
+        except ContentValidationError as e:
+            print(f"Content validation failed: {str(e)}")
+
+        # Save results
+        print("Saving content...")
+        saved_paths = save_content_batch(results)
+        print("Content saved to:", saved_paths)
+
+        # Display results
+        for platform, content in results.items():
+            if content:
+                print(f"\n=== {platform.upper()} CONTENT ===")
+
+                if platform == "instagram":
+                    print(f"Caption: {content.caption}")
+                    print(f"Hashtags: {' '.join(content.hashtags)}")
+
+                elif platform == "linkedin":
+                    print(f"Title: {content.title}")
+                    print(f"Content Preview: {content.content[:200]}...")
+
+                else:  # blog
+                    print(f"Title: {content.title}")
+                    print(f"Word Count: {content.word_count}")
+                    print(f"Number of Sections: {len(content.sections)}")
 
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print(f"An error occurred: {str(e)}")
+        logging.error(f"Error in main execution: {str(e)}", exc_info=True)
+
+
+def get_content_statistics(results: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    """
+    Generate statistics for the content batch
+
+    Args:
+        results: Dictionary of generated content
+
+    Returns:
+        Dict containing statistics for each platform
+    """
+    stats = {}
+
+    for platform, content in results.items():
+        if content is None:
+            stats[platform] = {"status": "failed"}
+            continue
+
+        platform_stats = {"status": "success"}
+
+        if platform == "instagram":
+            platform_stats.update({
+                "caption_length": len(content.caption),
+                "num_hashtags": len(content.hashtags),
+                "num_visual_elements": len(content.visual_elements)
+            })
+
+        elif platform == "linkedin":
+            platform_stats.update({
+                "content_length": len(content.content),
+                "num_insights": len(content.key_insights),
+                "num_hashtags": len(content.hashtags)
+            })
+
+        elif platform == "blog":
+            platform_stats.update({
+                "word_count": content.word_count,
+                "num_sections": len(content.sections),
+                "num_keywords": len(content.keywords)
+            })
+
+        stats[platform] = platform_stats
+
+    return stats
+
+
