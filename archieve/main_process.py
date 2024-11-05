@@ -1,11 +1,7 @@
 from src.process_data import create_summaries
-from src.create_chains import (ContentGenerator,InstagramPostOutput,LinkedInPostOutput,
-                               CompanyBlogOutput,create_content_batch,validate_content_batch,
-                               save_content_batch,get_content_statistics,)
-from src.configs import PDF_PATH
-from typing import Dict, Union, Optional
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import logging
+from archieve.create_chains import (ContentGenerator, create_content_batch, validate_content_batch,
+                                    save_content_batch, get_content_statistics, )
+from configs.configs import PDF_PATH
 
 res=create_summaries(PDF_PATH)
 

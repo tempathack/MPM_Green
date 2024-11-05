@@ -1,17 +1,12 @@
 import os
 import re
-import numpy as np
 import pandas as pd
 import openai
-import faiss
 from tqdm import tqdm
 from fpdf import FPDF
 from langchain.document_loaders import PyPDFLoader
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
-from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
 from langchain import OpenAI
 from dotenv import load_dotenv
 import numpy as np
@@ -19,7 +14,7 @@ import faiss
 from sklearn.metrics import silhouette_score
 from typing import Tuple, Optional
 import logging
-from src.utils import setup_summarization_chain
+from archieve.utils import setup_summarization_chain
 load_dotenv()
 
 class ClusterOptimizer:
