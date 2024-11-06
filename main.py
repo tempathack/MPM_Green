@@ -141,12 +141,13 @@ async def main():
     with st.sidebar:
         st.header("Settings")
         temperature = st.slider("Temperature", 0.0, 1.0, 0.3)
-        max_retries = st.number_input("Max Retries", 1, 5, 3)
+        max_retries = st.number_input("Max Retries", 1,10, 3)
 
         if st.button("Update Settings"):
             st.session_state.generator = ContentGenerator(
                 model_name="gpt-4o",
-                temperature=temperature
+                temperature=temperature,
+                max_retries= max_retries
             )
             st.success(f"Temperature updated to {temperature}")
 

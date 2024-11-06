@@ -1,14 +1,16 @@
 import logging
 import asyncio
-from typing import List, Dict, Any, Optional, Union, Literal, Tuple
+from typing import List, Dict, Any, Optional, Union, Literal, Tuple,Type
 from openai import OpenAI
 import langdetect
+import asyncio
 from langdetect import detect
 from langdetect.lang_detect_exception import LangDetectException
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 from langchain.schema import BaseRetriever
+from langchain.output_parsers import PydanticOutputParser
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
 from pydantic import ValidationError
@@ -19,7 +21,7 @@ from generators.image_generator import ImageGenerator
 from models.output_models import (
     InstagramPostOutput,
     LinkedInPostOutput,
-    CompanyBlogOutput
+    CompanyBlogOutput,BaseContentOutput
 )
 from prompts.system_prompts import PLATFORM_PROMPTS
 
@@ -27,11 +29,11 @@ from prompts.system_prompts import PLATFORM_PROMPTS
 class ContentGenerator:
     def __init__(
             self,
-            model_name: str = "gpt-4",
+            model_name: str = "gpt-4o",
             temperature: float = 0.3,
             platforms: Optional[List[str]] = None,
             retriever: Optional[BaseRetriever] = None,
-            max_retries: int = 3
+            max_retries: int = 10
     ):
         """Initialize content generator with specified settings"""
         self.model_name = model_name
@@ -39,6 +41,11 @@ class ContentGenerator:
         self.platforms = platforms or ["instagram", "linkedin", "blog"]
         self.retriever = retriever
         self.max_retries = max_retries
+        self.model_map: Dict[str, Type[BaseContentOutput]] = {
+            "image_post": InstagramPostOutput,
+            "linkedin_post": LinkedInPostOutput,
+            "blog_post": CompanyBlogOutput,
+        }
 
         # Initialize language detection
         langdetect.DetectorFactory.seed = 0
@@ -74,9 +81,9 @@ class ContentGenerator:
     def _get_parser(self, platform: str) -> PydanticOutputParser:
         """Get appropriate parser for platform"""
         parser_map = {
-            "instagram": InstagramPostOutput,
-            "linkedin": LinkedInPostOutput,
-            "blog": CompanyBlogOutput
+            "instagram":InstagramPostOutput,
+            "linkedin":LinkedInPostOutput,
+            "blog": CompanyBlogOutput,
         }
 
         parser_class = parser_map.get(platform)
@@ -155,7 +162,7 @@ class ContentGenerator:
             response = await asyncio.get_running_loop().run_in_executor(
                 None,
                 lambda: self.openai_client.chat.completions.create(
-                    model="gpt-4",
+                    model="gpt-4o",
                     messages=[
                         {
                             "role": "system",
@@ -188,6 +195,15 @@ class ContentGenerator:
             logging.error(f"Error retrieving context: {str(e)}")
             return ""
 
+    async def parse_content_output(self,data: dict) -> BaseContentOutput:
+        content_type = data.get("content_type")
+
+
+        model_cls = self.model_map.get(content_type)
+        if model_cls is None:
+            raise ValueError(f"Unknown content type: {content_type}")
+
+        return model_cls.parse_obj(data)
     async def generate_content_with_image(
             self,
             content: str,
@@ -243,9 +259,8 @@ class ContentGenerator:
                         'original_prompt': result.image_prompt
                     }
 
-                    # Convert back to appropriate model
-                    parser = self._get_parser(platform)
-                    return parser.parse_obj(result_dict)
+
+                    return self.parse_content_output(result_dict)
 
             return result
 
@@ -267,7 +282,7 @@ class ContentGenerator:
             response = await asyncio.get_running_loop().run_in_executor(
                 None,
                 lambda: self.openai_client.chat.completions.create(
-                    model="gpt-4",
+                    model="gpt-4o",
                     messages=[
                         {"role": "system", "content": "You are an expert content enhancer."},
                         {"role": "user", "content": enhancement_prompt}
@@ -281,3 +296,32 @@ class ContentGenerator:
         except Exception as e:
             logging.error(f"Error enhancing blog content: {str(e)}")
             raise
+
+
+async def toasync():
+    generator = ContentGenerator(model_name='gpt-4o')
+    res=[]
+    for platform in generator.platforms:
+        result = await generator.generate_content_with_image(
+            content="""
+            In manchen Branchen und Positionen werden Arbeitskräfte weit über dem Durchschnitt bezahlt. Der Begriff "überbezahlt" beschreibt Fälle, in denen die Vergütung eines Mitarbeiters als unverhältnismäßig hoch im Vergleich zur geleisteten Arbeit oder zum Marktwert betrachtet wird. Dies kann durch verschiedene Faktoren verursacht werden, wie zum Beispiel exklusive Fachkenntnisse, die Nachfrage nach seltenen Fähigkeiten oder Verhandlungsgeschick.
+
+            Besonders in leitenden Positionen und spezialisierten Berufen wie Management, Finanzsektor und Technologie sind überbezahlte Gehälter häufiger zu beobachten. Auch in Sport und Unterhaltung sind solche Gehälter gängig, da diese Branchen hohe Einnahmen generieren und die Leistung der Einzelperson stark gewichtet wird.
+
+            Kritiker sehen darin oft eine ungerechte Verteilung und ein Zeichen für wirtschaftliche Ungleichheit. Sie argumentieren, dass solch hohe Gehälter das Gehalt anderer Arbeitskräfte und die Arbeitsbedingungen der Belegschaft insgesamt beeinflussen können. Befürworter hingegen betonen, dass die Gehälter den Marktwert widerspiegeln und Talent belohnen, was Unternehmen stärkt und Innovationen vorantreibt.
+            """,
+            title="Überbezahlte Arbeitskräfte",
+            platform=platform
+        )
+        d= await result
+        res.append(d)
+    return res
+
+
+if __name__ == '__main__':
+
+    from dotenv import load_dotenv
+    load_dotenv()
+    res=asyncio.run(toasync())
+
+    print(res)
