@@ -298,30 +298,37 @@ class ContentGenerator:
             raise
 
 
-async def toasync():
-    generator = ContentGenerator(model_name='gpt-4o')
-    res=[]
-    for platform in generator.platforms:
-        result = await generator.generate_content_with_image(
-            content="""
-            In manchen Branchen und Positionen werden Arbeitskräfte weit über dem Durchschnitt bezahlt. Der Begriff "überbezahlt" beschreibt Fälle, in denen die Vergütung eines Mitarbeiters als unverhältnismäßig hoch im Vergleich zur geleisteten Arbeit oder zum Marktwert betrachtet wird. Dies kann durch verschiedene Faktoren verursacht werden, wie zum Beispiel exklusive Fachkenntnisse, die Nachfrage nach seltenen Fähigkeiten oder Verhandlungsgeschick.
+async def generate_content_for_all_platforms(contents: List[str], titles: List[str], **kwargs) -> List[Dict]:
+    """
+    Generates content for each platform using given lists of contents and titles.
 
-            Besonders in leitenden Positionen und spezialisierten Berufen wie Management, Finanzsektor und Technologie sind überbezahlte Gehälter häufiger zu beobachten. Auch in Sport und Unterhaltung sind solche Gehälter gängig, da diese Branchen hohe Einnahmen generieren und die Leistung der Einzelperson stark gewichtet wird.
+    Parameters:
+        contents (List[str]): List of content texts.
+        titles (List[str]): List of titles corresponding to each content.
+        kwargs: Additional arguments for ContentGenerator, like `model_name`, `max_retries`, `temperature`.
 
-            Kritiker sehen darin oft eine ungerechte Verteilung und ein Zeichen für wirtschaftliche Ungleichheit. Sie argumentieren, dass solch hohe Gehälter das Gehalt anderer Arbeitskräfte und die Arbeitsbedingungen der Belegschaft insgesamt beeinflussen können. Befürworter hingegen betonen, dass die Gehälter den Marktwert widerspiegeln und Talent belohnen, was Unternehmen stärkt und Innovationen vorantreibt.
-            """,
-            title="Überbezahlte Arbeitskräfte",
-            platform=platform
-        )
-        d= await result
-        res.append(d)
+    Returns:
+        List[Dict]: List of results for each content-title-platform combination.
+    """
+    # Pass **kwargs to ContentGenerator to initialize with flexible parameters
+    generator = ContentGenerator(**kwargs)
+
+    res = []
+    for content, title in zip(contents, titles):
+        for platform in generator.platforms:
+            # Generate content with image for each content-title-platform combination
+            result = await generator.generate_content_with_image(content=content, title=title, platform=platform)
+            obtained = await result  # Await the result for each platform
+            res.append({
+                "platform": platform,
+                "title": title,
+                "content": content,
+                "result": obtained
+            })
+
     return res
 
 
 if __name__ == '__main__':
 
-    from dotenv import load_dotenv
-    load_dotenv()
-    res=asyncio.run(toasync())
-
-    print(res)
+    pass
