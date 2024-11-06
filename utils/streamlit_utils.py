@@ -135,14 +135,18 @@ def display_content_set(content_sets: List[Dict[str, Any]], stats: Dict[str, Dic
 
 def show_download_buttons(content_group: List[Dict[str, Any]]):
     """Display download buttons for content group"""
+
+    if 'download_counter' not in st.session_state:
+        st.session_state.download_counter = 0
     cols = st.columns(len(content_group))
 
     for i, content in enumerate(content_group):
         with cols[i]:
             if result := content.get('result'):
+                st.session_state.download_counter += 1
                 st.download_button(
                     f"Download {content['platform'].title()} Content",
-                    key=f"Download_{content['platform'].title()}_Content",
+                    key=f"Download_{content['platform'].title()}_Content_{st.session_state.download_counter}",
                     data=json.dumps(result.dict(), indent=2),
                     file_name=f"{content['platform']}_content.json",
                     mime="application/json"

@@ -217,11 +217,14 @@ class BookSummarizer:
         llm = OpenAI()
         return llm.get_num_tokens(text)
 
-    def split_into_documents(self, text):
+    def split_into_documents(self, text,
+        breakpoint_thresh_strategy,
+        breakpoint_thresh_strategy_threshold):
         """Split text into semantic chunks"""
         text_splitter = SemanticChunker(
             self.embeddings_model,
-            breakpoint_threshold_type="interquartile"
+            breakpoint_threshold_type=breakpoint_thresh_strategy,
+            breakpoint_threshold_amount=breakpoint_thresh_strategy_threshold
         )
         return text_splitter.create_documents([text])
 
@@ -303,7 +306,9 @@ def save_summary_to_pdf(summary_text, output_path="book_summary.pdf"):
     pdf.output(output_path)
 
 
-def create_summaries(pdf_path):
+def create_summaries(pdf_path,
+        breakpoint_thresh_strategy,
+        breakpoint_thresh_strategy_threshold):
     # Initialize summarizer
 
     summarizer = BookSummarizer(os.getenv('OPENAI_API_KEY'))
@@ -317,7 +322,11 @@ def create_summaries(pdf_path):
     print(f"Total tokens in book: {token_count}")
 
     # Split into documents and get embeddings
-    docs = summarizer.split_into_documents(clean_text)
+    docs = summarizer.split_into_documents(clean_text,
+    breakpoint_thresh_strategy,
+    breakpoint_thresh_strategy_threshold)
+
+    print("-------------------",breakpoint_thresh_strategy,"---------------------------------")
     embeddings = summarizer.get_embeddings([doc.page_content for doc in docs])
 
     # Prepare data for clustering
@@ -333,7 +342,8 @@ def create_summaries(pdf_path):
 
     # Save to PDF
     #save_summary_to_pdf(final_summary)
-    return final_summary
+    return final_summary[:2],clean_text
+    #return final_summary,clean_text
 
 
 if __name__ == "__main__":

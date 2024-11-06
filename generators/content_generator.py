@@ -44,7 +44,7 @@ class ContentGenerator:
         self.model_name = model_name
         self.temperature = temperature
         self.platforms = platforms or ["instagram", "linkedin", "blog"]
-        self.retriever = retriever
+        self.retriever = retriever()
         self.corpus=corpus
         self.max_retries = max_retries
         self.model_map: Dict[str, Type[BaseContentOutput]] = {
@@ -118,9 +118,6 @@ class ContentGenerator:
 
         # Process corpus (only needs to be done once)
         self.retriever.process_corpus(self.corpus)
-
-        # Search using input title and content
-        results = self.retriever.search(title, content)
 
 
 
@@ -196,18 +193,18 @@ class ContentGenerator:
             return prompt
 
 
-    async def get_relevant_context(self, query: str) -> str:
+    async def get_relevant_context(self, title, content) -> str:
         """Get relevant context from retriever"""
         if not self.retriever:
             return ""
 
 
         try:
-            docs = await asyncio.get_running_loop().run_in_executor(
+            res = await asyncio.get_running_loop().run_in_executor(
                 None,
-                lambda: self.retriever.get_relevant_documents(query)
+                lambda:    self.retriever.search(title, content)
             )
-            return "\n\n".join(doc.page_content for doc in docs)
+            return "\n\n".join(r.content for r in res.retrieved_chunks)
         except Exception as e:
             logging.error(f"Error retrieving context: {str(e)}")
             return ""
@@ -237,7 +234,7 @@ class ContentGenerator:
             lang = self.detect_language(f"{title} {content}")
 
             # Get context if available
-            context = await self.get_relevant_context(f"{title} {content}")
+            context = await self.get_relevant_context(title,content)
 
             # Prepare inputs
             inputs = {

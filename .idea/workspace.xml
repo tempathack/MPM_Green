@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcfbda8d-0a1c-45a8-bbf0-495bd56853a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/retreiver_stuff.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/vector_dbsn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/dtrans.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archieve/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse_stuff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/configs.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/configs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generators/content_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/content_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/process_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/retreiver_stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/retreiver_stuff.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/streamlit_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/streamlit_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +42,7 @@
   "keyToString": {
     "Python.content_generator.executor": "Run",
     "Python.create_chains.executor": "Run",
+    "Python.dtrans.executor": "Run",
     "Python.main.executor": "Run",
     "Python.main_process.executor": "Run",
     "Python.process_data.executor": "Run",
@@ -61,7 +62,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.retreiver_stuff">
+  <component name="RunManager" selected="Python.dtrans">
     <configuration name="content_generator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MPM_Green_Project" />
       <option name="ENV_FILES" value="" />
@@ -84,7 +85,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="create_chains" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dtrans" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MPM_Green_Project" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -93,11 +94,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/archieve/create_chains.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/dtrans.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -174,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dtrans" />
         <item itemvalue="Python.retreiver_stuff" />
         <item itemvalue="Python.content_generator" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.create_chains" />
       </list>
     </recent_temporary>
   </component>

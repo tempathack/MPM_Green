@@ -1,3 +1,5 @@
+from operator import index
+
 import streamlit as st
 import asyncio
 import tempfile
@@ -9,6 +11,7 @@ from generators.content_generator import generate_content_for_all_platforms
 from utils.streamlit_utils import display_content_set
 from src.process_data import create_summaries
 from src.retreiver_stuff import SmartRAGAnalyzer
+from configs import configs
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -18,7 +21,8 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-
+st.session_state.breakpoint_thresh_strategy='interquartile'
+st.session_state.breakpoint_thresh_strategy_threshold=1.5
 
 async def process_pdf_and_generate_content(
         pdf_path: str,
@@ -44,7 +48,9 @@ async def process_pdf_and_generate_content(
     """
     try:
         # Generate summaries from PDF
-        summaries = create_summaries(pdf_path)
+        summaries,corpus= create_summaries(pdf_path=pdf_path,
+        breakpoint_thresh_strategy = st.session_state.breakpoint_thresh_strategy,
+        breakpoint_thresh_strategy_threshold = st.session_state.breakpoint_thresh_strategy_threshold)
         all_results = []
 
         total_summaries = len(summaries)
@@ -101,10 +107,10 @@ async def main():
         if model_name=="o1-preview":
             temperature = st.slider(
                 "Temperature",
-                min_value=1.0,
+                min_value=0.99,
                 max_value=1.0,
                 value=1.0,
-                step=0.1,
+                step=0.01,
                 help="Higher values make the output more creative but less focused"
             )
         else:
@@ -125,6 +131,19 @@ async def main():
             help="Maximum number of retries for content generation"
         )
 
+        breakpoint_thresh_strategy=st.selectbox('breakpoint_thresh_strategy',index=2,
+                                                options=['percentile', 'standard_deviation', 'interquartile', 'gradient'],
+                                                help="select the method to cluster the different contents semantically in the magazine")
+
+
+
+        breakpoint_thresh_strategy_threshold = st.slider(
+            'breakpoint_thresh_strategy_threshold',
+            min_value=configs.BREAKPOINT_DEFAULTS[breakpoint_thresh_strategy]['range_min'],
+            max_value=configs.BREAKPOINT_DEFAULTS[breakpoint_thresh_strategy]['range_max'],
+            value=configs.BREAKPOINT_DEFAULTS[breakpoint_thresh_strategy]['default'],
+            help="the value for when the kmeans algorythm decides to split the topics because they are significantly apart for example if one chunk is 3 stds away from another that would lead to a new post generation"
+        )
         st.markdown("\n")
         process = st.button("Start Process", type="primary")
 
@@ -160,7 +179,7 @@ async def main():
                         temperature=temperature,
                         max_retries=max_retries,
                         progress_bar=progress_bar,
-                        status_text=status_text
+                        status_text=status_text,
                     )
 
                     # Clear progress tracking

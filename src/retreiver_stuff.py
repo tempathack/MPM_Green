@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import numpy as np
 from dotenv import load_dotenv
 from tqdm import tqdm
-
+from utils.translators import translate_text
 
 @dataclass
 class RetrievedChunk:
@@ -81,10 +81,11 @@ class SmartRAGAnalyzer:
         Args:
             corpus: The reference text corpus to process
         """
-        print("Processing corpus...")
+        translated_text = translate_text(corpus, source_lang='de', target_lang='en-GB')
 
-        # Split corpus into chunks
-        self.chunks = self.text_splitter.split_text(corpus)
+
+
+        self.chunks = self.text_splitter.split_text(translated_text)
 
         # Calculate statistics
         total_chars = len(corpus)
