@@ -14,7 +14,7 @@ import faiss
 from sklearn.metrics import silhouette_score
 from typing import Tuple, Optional
 import logging
-from archieve.utils import setup_summarization_chain
+from src.parse_stuff import setup_summarization_chain
 load_dotenv()
 
 class ClusterOptimizer:
@@ -228,7 +228,7 @@ class BookSummarizer:
     def get_embeddings(self, texts):
         """Get embeddings for the documents"""
         response = openai.embeddings.create(
-            model="text-embedding-3-small",
+            model="text-embedding-3-large",
             input=texts
         )
         return response.data

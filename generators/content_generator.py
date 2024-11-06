@@ -1,6 +1,8 @@
 import logging
 import asyncio
 from typing import List, Dict, Any, Optional, Union, Literal, Tuple,Type
+
+from dotenv import load_dotenv
 from openai import OpenAI
 import langdetect
 import asyncio
@@ -15,7 +17,8 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
 from pydantic import ValidationError
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
-
+from src.process_data import create_summaries
+from src.retreiver_stuff import SmartRAGAnalyzer
 # Change relative imports to absolute
 from generators.image_generator import ImageGenerator
 from models.output_models import (
@@ -32,14 +35,17 @@ class ContentGenerator:
             model_name: str = "gpt-4o",
             temperature: float = 0.3,
             platforms: Optional[List[str]] = None,
-            retriever: Optional[BaseRetriever] = None,
-            max_retries: int = 10
+            retriever: SmartRAGAnalyzer = None,
+            corpus:str=None,
+            max_retries: int = 10,
+
     ):
         """Initialize content generator with specified settings"""
         self.model_name = model_name
         self.temperature = temperature
         self.platforms = platforms or ["instagram", "linkedin", "blog"]
         self.retriever = retriever
+        self.corpus=corpus
         self.max_retries = max_retries
         self.model_map: Dict[str, Type[BaseContentOutput]] = {
             "image_post": InstagramPostOutput,
@@ -109,6 +115,15 @@ class ContentGenerator:
 
     def initialize_chains(self):
         """Initialize chains for all platforms"""
+
+        # Process corpus (only needs to be done once)
+        self.retriever.process_corpus(self.corpus)
+
+        # Search using input title and content
+        results = self.retriever.search(title, content)
+
+
+
         for platform in self.platforms:
             try:
                 parser = self._get_parser(platform)
@@ -162,7 +177,7 @@ class ContentGenerator:
             response = await asyncio.get_running_loop().run_in_executor(
                 None,
                 lambda: self.openai_client.chat.completions.create(
-                    model="gpt-4o",
+                    model= self.model_name,
                     messages=[
                         {
                             "role": "system",
@@ -180,10 +195,12 @@ class ContentGenerator:
             logging.error(f"Translation error: {str(e)}")
             return prompt
 
+
     async def get_relevant_context(self, query: str) -> str:
         """Get relevant context from retriever"""
         if not self.retriever:
             return ""
+
 
         try:
             docs = await asyncio.get_running_loop().run_in_executor(
@@ -262,7 +279,6 @@ class ContentGenerator:
 
                     return self.parse_content_output(result_dict)
 
-            return result
 
         except Exception as e:
             logging.error(f"Error generating content with image: {str(e)}")
@@ -313,6 +329,8 @@ async def generate_content_for_all_platforms(contents: List[str], titles: List[s
     # Pass **kwargs to ContentGenerator to initialize with flexible parameters
     generator = ContentGenerator(**kwargs)
 
+
+
     res = []
     for content, title in zip(contents, titles):
         for platform in generator.platforms:
@@ -330,5 +348,26 @@ async def generate_content_for_all_platforms(contents: List[str], titles: List[s
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    content_list = [
+        """
+        Many industries pay employees well above average for specialized skills or senior roles. 
+        "Overpaid" is a term that describes cases where compensation is seen as disproportionately 
+        high compared to the work done or the market rate. Critics argue that such salaries contribute 
+        to economic inequality, while supporters believe they reward talent and foster innovation.
+        """,
+        """
+        Sustainability is becoming a top priority for businesses worldwide. Adopting eco-friendly 
+        practices not only benefits the environment but also builds a positive brand image. 
+        Companies are increasingly exploring ways to reduce carbon footprints, from sustainable 
+        sourcing to waste reduction initiatives.
+        """
+    ]
 
-    pass
+    title_list = [
+        "The Concept of Overpaid Employees",
+        "Sustainable Business Practices: A New Era of Responsibility"
+    ]
+
+    res=asyncio.run(generate_content_for_all_platforms(content_list, title_list, model_name="gpt-4o", max_retries=10, temperature=1.0))
+    print(res)

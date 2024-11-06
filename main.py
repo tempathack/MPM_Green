@@ -3,22 +3,12 @@ import asyncio
 import tempfile
 from pathlib import Path
 import logging
-from typing import List, Dict, Any,Tuple
+from typing import List, Dict, Any, Tuple
 import json
+from generators.content_generator import generate_content_for_all_platforms
+from utils.streamlit_utils import display_content_set
 from src.process_data import create_summaries
-from generators.content_generator import ContentGenerator
-from utils.streamlit_utils import display_content_set, show_download_buttons
-import asyncio
-import logging
-from pathlib import Path
-import tempfile
-from typing import List, Tuple, Dict, Any
-import json
-
-# Use absolute imports
-from generators.content_generator import ContentGenerator
-from utils.validators import validate_content_batch, get_content_statistics
-from src.process_data import create_summaries
+from src.retreiver_stuff import SmartRAGAnalyzer
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -32,19 +22,25 @@ logging.basicConfig(
 
 async def process_pdf_and_generate_content(
         pdf_path: str,
-        generator: ContentGenerator,
-        progress_bar=None
-) -> List[Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]]:
+        model_name: str,
+        temperature: float,
+        max_retries: int,
+        progress_bar=None,
+        status_text=None
+) -> List[Dict[str, Any]]:
     """
-    Process PDF and generate content for all summaries
+    Process PDF and generate content for each section
 
     Args:
         pdf_path: Path to PDF file
-        generator: Initialized ContentGenerator instance
+        model_name: Name of the model to use
+        temperature: Temperature setting for generation
+        max_retries: Maximum number of retries
         progress_bar: Optional Streamlit progress bar
+        status_text: Optional Streamlit text element for status updates
 
     Returns:
-        List of tuples containing results and stats for each summary
+        List of generated content for each section
     """
     try:
         # Generate summaries from PDF
@@ -52,34 +48,34 @@ async def process_pdf_and_generate_content(
         all_results = []
 
         total_summaries = len(summaries)
+
         for i, summary in enumerate(summaries):
             try:
                 # Update progress
                 if progress_bar:
-                    progress_bar.progress((i + 1) / total_summaries)
-                    st.write(f"Processing section {i + 1} of {total_summaries}...")
+                    progress = (i + 1) / total_summaries
+                    progress_bar.progress(progress)
+                if status_text:
+                    status_text.write(f"Processing section {i + 1} of {total_summaries}...")
 
-                # Generate content for all platforms
-                results = {}
-                for platform in generator.platforms:
-                    try:
-                        result = await generator.generate_content_with_image(
-                            content=summary.summary,
-                            title=summary.title,
-                            platform=platform
-                        )
-                        results[platform] = result
-                        logging.info(f"Generated content for {platform} - section {i + 1}")
-                    except Exception as e:
-                        logging.error(f"Failed to generate {platform} content: {str(e)}")
-                        results[platform] = None
+                # Generate content for the summary
+                results = await generate_content_for_all_platforms(
+                    contents=[summary.summary],
+                    titles=[summary.title],
+                    corpus=corpus,
+                    model_name=model_name,
+                    temperature=temperature,
+                    max_retries=max_retries,
+                    retriever=SmartRAGAnalyzer
+                )
 
-                # Generate statistics
-                stats = get_content_statistics(results)
-                all_results.append((results, stats))
+                all_results.extend(results)
+                logging.info(f"Generated content for section {i + 1}")
 
             except Exception as e:
-                logging.error(f"Error processing summary {i + 1}: {str(e)}")
+                logging.error(f"Error processing section {i + 1}: {str(e)}")
+                if status_text:
+                    status_text.error(f"Error in section {i + 1}: {str(e)}")
                 continue
 
         return all_results
@@ -89,74 +85,64 @@ async def process_pdf_and_generate_content(
         raise
 
 
-def get_content_statistics(results: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
-    """Generate statistics for content"""
-    stats = {}
-
-    for platform, content in results.items():
-        if content is None:
-            stats[platform] = {"status": "failed"}
-            continue
-
-        platform_stats = {"status": "success"}
-
-        if platform == "instagram":
-            platform_stats.update({
-                "caption_length": len(content.caption),
-                "num_hashtags": len(content.hashtags),
-                "num_visual_elements": len(content.visual_elements)
-            })
-
-        elif platform == "linkedin":
-            platform_stats.update({
-                "content_length": len(content.content),
-                "num_insights": len(content.key_insights),
-                "num_hashtags": len(content.hashtags)
-            })
-
-        elif platform == "blog":
-            platform_stats.update({
-                "word_count": content.word_count,
-                "num_sections": len(content.sections),
-                "num_keywords": len(content.keywords)
-            })
-
-        stats[platform] = platform_stats
-
-    return stats
-
-
 async def main():
-    st.set_page_config(page_title="Content Generation Dashboard", layout="wide")
-    st.title("Content Generation Dashboard")
+    st.set_page_config(page_title="PDF Content Generation Dashboard", layout="wide")
+    st.title("PDF Content Generation Dashboard")
 
-    # Initialize generator in session state
-    if 'generator' not in st.session_state:
-        st.session_state.generator = ContentGenerator(
-            model_name="gpt-4o",
-            temperature=0.3
+    # Generator settings in sidebar
+    with st.sidebar:
+        st.header("Generator Settings")
+        model_name = st.selectbox(
+            "Model",
+            options=["gpt-4o", "gpt-4o-mini","o1-preview"],
+            index=0,
+            help="Select the model to use for content generation"
+        )
+        if model_name=="o1-preview":
+            temperature = st.slider(
+                "Temperature",
+                min_value=1.0,
+                max_value=1.0,
+                value=1.0,
+                step=0.1,
+                help="Higher values make the output more creative but less focused"
+            )
+        else:
+            temperature = st.slider(
+                "Temperature",
+                min_value=0.0,
+                max_value=1.0,
+                value=0.3,
+                step=0.1,
+                help="Higher values make the output more creative but less focused"
+            )
+
+        max_retries = st.number_input(
+            "Max Retries",
+            min_value=1,
+            max_value=10,
+            value=3,
+            help="Maximum number of retries for content generation"
         )
 
-    # Sidebar controls
-    with st.sidebar:
-        st.header("Settings")
-        temperature = st.slider("Temperature", 0.0, 1.0, 0.3)
-        max_retries = st.number_input("Max Retries", 1,10, 3)
+        st.markdown("\n")
+        process = st.button("Start Process", type="primary")
 
-        if st.button("Update Settings"):
-            st.session_state.generator = ContentGenerator(
-                model_name="gpt-4o",
-                temperature=temperature,
-                max_retries= max_retries
-            )
-            st.success(f"Temperature updated to {temperature}")
+        st.markdown("---")
+        st.markdown("""
+        ### Instructions
+        1. Upload a PDF file
+        2. Adjust generation settings if needed
+        3. Wait for content generation
+        4. Download results
+        """)
 
-    # File uploader
-    uploaded_file = st.file_uploader("Choose your PDF file", type=['pdf'])
+    # File uploader for PDF
+    uploaded_file = st.file_uploader("Upload your PDF file", type=['pdf'])
 
-    if uploaded_file is not None:
+    if uploaded_file is not None and process:
         try:
-            # Create progress bar
+            # Create progress tracking elements
             progress_bar = st.progress(0)
             status_text = st.empty()
 
@@ -165,61 +151,62 @@ async def main():
                 tmp_file.write(uploaded_file.getvalue())
                 temp_path = Path(tmp_file.name)
 
-            with st.spinner("Processing PDF and generating content..."):
-                # Process PDF and generate content
-                all_results = await process_pdf_and_generate_content(
-                    str(temp_path),
-                    st.session_state.generator,
-                    progress_bar
-                )
-
-                # Clear progress bar and status
-                progress_bar.empty()
-                status_text.empty()
-
-                # Display results
-                st.success(f"Generated content for {len(all_results)} sections!")
-
-                # Create tabs for each section
-                if len(all_results) > 1:
-                    tabs = st.tabs([f"Section {i + 1}" for i in range(len(all_results))])
-                    for i, (results, stats) in enumerate(all_results):
-                        with tabs[i]:
-                            display_content_set(results, i, stats)
-                            st.divider()
-                            show_download_buttons(results, i)
-                else:
-                    results, stats = all_results[0]
-                    display_content_set(results, 0, stats)
-                    st.divider()
-                    show_download_buttons(results, 0)
-
-                # Download all button
-                st.divider()
-                if st.button("Download All Content"):
-                    combined_results = {
-                        f"section_{i}": {
-                            "results": results,
-                            "stats": stats
-                        }
-                        for i, (results, stats) in enumerate(all_results)
-                    }
-
-                    st.download_button(
-                        "Download Complete Results",
-                        data=json.dumps(combined_results, indent=2),
-                        file_name="all_content.json",
-                        mime="application/json"
+            try:
+                with st.spinner("Processing PDF and generating content..."):
+                    # Process PDF and generate content
+                    all_results = await process_pdf_and_generate_content(
+                        str(temp_path),
+                        model_name=model_name,
+                        temperature=temperature,
+                        max_retries=max_retries,
+                        progress_bar=progress_bar,
+                        status_text=status_text
                     )
 
-        except Exception as e:
-            st.error(f"An error occurred: {str(e)}")
-            logging.error(f"Error in main execution: {str(e)}", exc_info=True)
+                    # Clear progress tracking
+                    progress_bar.empty()
+                    status_text.empty()
 
-        finally:
-            # Clean up temporary file
-            if 'temp_path' in locals():
+                    if all_results:
+                        # Display success message
+                        st.success(f"Successfully generated content from PDF!")
+
+                        # Display results
+                        display_content_set(all_results, stats={})
+
+                        # Add download button for all results
+                        st.divider()
+                        st.download_button(                            "Download All Generated Content",
+                                                                       key='dload_all',
+                            data=json.dumps(
+                                [
+                                    {
+                                        "platform": r["platform"],
+                                        "title": r["title"],
+                                        "content": r["content"],
+                                        "result": r["result"].dict()
+                                    }
+                                    for r in all_results
+                                ],
+                                indent=2
+                            ),
+                            file_name="generated_content.json",
+                            mime="application/json"
+                        )
+                    else:
+                        st.warning("No content was generated. Please check the PDF file.")
+
+            except Exception as e:
+                st.error(f"An error occurred during processing: {str(e)}")
+                logging.error(f"Error in main execution: {str(e)}", exc_info=True)
+
+            finally:
+                # Clean up temporary file
                 temp_path.unlink()
+
+        except Exception as e:
+            st.error(f"Error handling uploaded file: {str(e)}")
+            logging.error(f"File handling error: {str(e)}", exc_info=True)
 
 
 if __name__ == "__main__":
