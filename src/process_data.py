@@ -342,7 +342,7 @@ def create_summaries(pdf_path,
 
     # Save to PDF
     #save_summary_to_pdf(final_summary)
-    return final_summary[:2],clean_text
+    return final_summary,clean_text
     #return final_summary,clean_text
 
 

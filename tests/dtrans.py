@@ -1,123 +1,105 @@
-from deep_translator import MyMemoryTranslator
+import deepl
 import time
 from typing import Union, List
-from tqdm import tqdm
 
 
 def translate_text(text: Union[str, List[str]],
                    source_lang: str = 'auto',
-                   target_lang: str = 'en-GB') -> Union[str, List[str]]:
+                   target_lang: str = 'EN') -> Union[str, List[str]]:
     """
-    Translates text using MyMemory translator (free, no API key required)
+    Translates text using DeepL with proper rate limiting and retries.
 
     Args:
-        text: String or list of strings to translate
-        source_lang: Source language code (e.g., 'fr-FR' for French, 'auto' for automatic detection)
-        target_lang: Target language code (e.g., 'en-GB' for English)
+        text: String or list of strings to translate.
+        source_lang: Source language code (e.g., 'DE' for German).
+        target_lang: Target language code (e.g., 'EN' for English).
 
     Returns:
-        Translated text or list of translated texts
+        Translated text or list of translated texts.
     """
-    # Map common language codes to their full versions
-    LANGUAGE_MAP = {
-        'en': 'en-GB',
-        'fr': 'fr-FR',
-        'es': 'es-ES',
-        'de': 'de-DE',
-        'it': 'it-IT',
-        'pt': 'pt-PT',
-        'nl': 'nl-NL',
-        'pl': 'pl-PL',
-        'ru': 'ru-RU',
-        'ja': 'ja-JP',
-        'zh': 'zh-CN',
-        'ko': 'ko-KR',
-        'ar': 'ar-SA',
-        'hi': 'hi-IN',
-        'auto': 'auto'
-    }
+    # Set your DeepL API key here
+    api_key = "YOUR_DEEPL_API_KEY"
 
-    # Convert short language codes to full codes
-    source_lang = LANGUAGE_MAP.get(source_lang, source_lang)
-    target_lang = LANGUAGE_MAP.get(target_lang, target_lang)
+    # Initialize the DeepL translator
+    translator = deepl.Translator(api_key)
 
-    translator = MyMemoryTranslator(source=source_lang, target=target_lang)
+    def translate_with_retry(texts: List[str], max_retries: int = 5) -> List[str]:
+        """Translate with retry logic and increased delays."""
+        for attempt in range(max_retries):
+            try:
+                # Wait longer between attempts
+                wait_time = (attempt + 1) * 10  # Increase wait time on each retry
+                time.sleep(wait_time)
 
-    # Handle character limit (MyMemory has a 500-character limit per request)
-    CHUNK_SIZE = 450  # Slightly lower than 500 to be safe
+                # Translate batch of texts
+                result = translator.translate_text(texts, source_lang=source_lang, target_lang=target_lang)
+                return [translation.text for translation in result]
+            except Exception as e:
+                print(f"Warning: Translation error - {str(e)}")
+                if attempt < max_retries - 1:
+                    print(f"Retrying in {wait_time + 5} seconds...")
+                else:
+                    return texts  # Return original text if max retries reached
+        return texts
 
-    def translate_chunk(chunk: str) -> str:
-        if not chunk.strip():
-            return chunk
+    def process_text(input_text: str) -> str:
+        # Clean up the text
+        cleaned_text = input_text.replace('\n', ' ').strip()
 
-        try:
-            translation = translator.translate(chunk)
-            time.sleep(1)  # Rate limiting to avoid issues
-            return translation
-        except Exception as e:
-            print(f"Warning: Translation error - {str(e)}")
-            return chunk  # Return original text if translation fails
+        # Split into smaller chunks if needed (400 chars to be safe)
+        if len(cleaned_text) > 400:
+            # Split on sentences
+            sentences = [s.strip() + '.' for s in cleaned_text.split('.') if s.strip()]
+            chunks = []
+            current_chunk = []
+            current_length = 0
 
-    def process_long_text(input_text: str) -> str:
-        if len(input_text) <= CHUNK_SIZE:
-            return translate_chunk(input_text)
+            for sentence in sentences:
+                if current_length + len(sentence) > 400:
+                    if current_chunk:
+                        chunks.append(' '.join(current_chunk))
+                    current_chunk = [sentence]
+                    current_length = len(sentence)
+                else:
+                    current_chunk.append(sentence)
+                    current_length += len(sentence)
 
-        # Split into chunks at sentence boundaries when possible
-        chunks = []
-        current_chunk = ""
+            if current_chunk:
+                chunks.append(' '.join(current_chunk))
 
-        for sentence in input_text.replace("。", ".").split("."):
-            if not sentence.strip():
-                continue
-
-            if len(current_chunk) + len(sentence) < CHUNK_SIZE:
-                current_chunk += sentence + "."
-            else:
-                if current_chunk:
-                    chunks.append(current_chunk)
-                current_chunk = sentence + "."
-
-        if current_chunk:
-            chunks.append(current_chunk)
-
-        # Translate each chunk
-        translated_chunks = []
-        for chunk in tqdm(chunks, desc="Translating chunks"):
-            translated_chunks.append(translate_chunk(chunk))
-
-        return " ".join(translated_chunks)
+            # Translate chunks with proper waiting
+            translated_chunks = translate_with_retry(chunks)
+            return ' '.join(translated_chunks)
+        else:
+            # Short enough to translate directly
+            return translate_with_retry([cleaned_text])[0]
 
     print("Processing corpus...")
 
-    # Handle both single strings and lists
+    # Handle both single string and list inputs
     if isinstance(text, str):
-        return process_long_text(text)
+        return process_text(text)
     else:
         results = []
-        for item in tqdm(text, desc="Translating texts"):
-            results.append(process_long_text(item))
+        # Process texts in small batches
+        batch_size = 3
+        for i in range(0, len(text), batch_size):
+            batch = text[i:i + batch_size]
+            translated_batch = [process_text(t) for t in batch]
+            results.extend(translated_batch)
         return results
 
 
-# Example usage:
+# Example usage
 if __name__ == "__main__":
-    # Example with proper language codes
     corpus = """Concular steht auf drei Beinen. Erstens: Bestands-
-erfassung – das läuft per Handarbeit, also dem kon-
-kreten Abklopfen von Wänden etwa, und digital,
-indem wir genau erfassen, was in Gebäuden verbaut
-wurde, was schadstofffrei ist, was zerstörungsfrei aus-
-gebaut werden kann und wiederverwert- oder wieder-
-verwendbar ist. Zweitens: Vermittlung – hier geht es
-um Rezertifizierung und darum, Hersteller und Käu-
-fer ausfindig zu machen sowie ums Matchen von Ver-
-käufern und Käufern bei allem, was nicht in den Müll
-muss. Die dritte Säule ist der Materialpass oder „Life-
-Cycle Passport“, der dokumentiert, welche Materialien
-verbaut sind und wie zirkulär ein Gebäude ist.
-    """
+    erfassung – das läuft per Handarbeit, also dem kon-
+    kreten Abklopfen von Wänden etwa, und digital,
+    indem wir genau erfassen, was in Gebäuden verbaut
+    wurde, was schadstofffrei ist, was zerstörungsfrei aus-
+    gebaut werden kann und wiederverwert- oder wieder-
+    verwendbar ist."""
 
-    # Using full language codes
-    translated_text = translate_text(corpus, source_lang='de', target_lang='en-GB')
-    print(f"\nOriginal: {corpus}")
-    print(f"Translated: {translated_text}")
+    translated = translate_text(corpus, source_lang='DE', target_lang='EN-GB')
+    print(f"Original: {corpus}")
+    print(f"Translated: {translated}")

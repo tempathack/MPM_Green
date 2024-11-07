@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcfbda8d-0a1c-45a8-bbf0-495bd56853a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/dtrans.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.streamlit/secrets.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.streamlit/st_auth.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/configs.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/configs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/content_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/content_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/process_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/retreiver_stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/retreiver_stuff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/dtrans.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/dtrans.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/streamlit_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/streamlit_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,10 +50,13 @@
     "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/tempa/Desktop/DMU_Projekt"
+    "last_opened_file_path": "/home/tempa/Desktop/MPM_Green_Project/.streamlit"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.streamlit" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/src" />

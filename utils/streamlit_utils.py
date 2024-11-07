@@ -152,9 +152,12 @@ def show_download_buttons(content_group: List[Dict[str, Any]]):
                     mime="application/json"
                 )
 
+
+    st.session_state.download_counter += 1
     # Combined download button
     st.download_button(
         "Download All Content",
+        key=f"Download_Content_{st.session_state.download_counter}",
         data=json.dumps([c['result'].dict() for c in content_group], indent=2),
         file_name="all_content.json",
         mime="application/json"
