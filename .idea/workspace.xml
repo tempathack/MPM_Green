@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcfbda8d-0a1c-45a8-bbf0-495bd56853a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.streamlit/secrets.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.streamlit/st_auth.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/process_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/dtrans.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/dtrans.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/streamlit_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/streamlit_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/output_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/output_models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,30 +23,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2oONP4XQFK6VIGIEfNWSu9XB7gM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.content_generator.executor": "Run",
-    "Python.create_chains.executor": "Run",
-    "Python.dtrans.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.main_process.executor": "Run",
-    "Python.process_data.executor": "Run",
-    "Python.retreiver_stuff.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/tempa/Desktop/MPM_Green_Project/.streamlit"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.content_generator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_chains.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dtrans.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_process.executor&quot;: &quot;Run&quot;,
+    &quot;Python.process_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.retreiver_stuff.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tempa/Desktop/MPM_Green_Project/.streamlit&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.streamlit" />

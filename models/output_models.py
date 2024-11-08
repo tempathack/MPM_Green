@@ -1,5 +1,5 @@
 import re
-from pydantic import BaseModel, Field, validator, model_validator
+from pydantic import BaseModel, Field, validator, model_validator,field_validator
 from typing import List, Dict, Literal, Optional, Union
 from datetime import datetime
 
@@ -10,13 +10,13 @@ class BlogSection(BaseModel):
     heading: str = Field(description="Section heading", min_length=1, max_length=100)
     content: str = Field(description="Section content", min_length=50)
 
-    @validator('heading')
+    @field_validator('heading')
     def validate_heading_format(cls, v):
         if not v.strip():
             raise ValueError("Heading cannot be empty or just whitespace")
         return v.strip()
 
-    @validator('content')
+    @field_validator('content')
     def validate_content_not_empty(cls, v):
         if not v.strip():
             raise ValueError("Content cannot be empty or just whitespace")
@@ -35,7 +35,7 @@ class BaseContentOutput(BaseModel):
     target_audience: Optional[str] = Field(description="Target audience for this content")
     pydantic_object: Optional[str] = None
 
-    @validator('timestamp')
+    @field_validator('timestamp')
     def validate_timestamp(cls, v):
         try:
             datetime.fromisoformat(v)
@@ -76,7 +76,7 @@ class InstagramPostOutput(BaseContentOutput):
     mood: str = Field(description="Overall mood/tone")
     engagement_hooks: List[str] = Field(min_items=1)
 
-    @validator('caption')
+    @field_validator('caption')
     def validate_caption_format(cls, v):
         if len(v) > 125:
             raise ValueError(f'Caption must not exceed 125 characters, got {len(v)}')
@@ -84,7 +84,7 @@ class InstagramPostOutput(BaseContentOutput):
             raise ValueError("Caption cannot be empty or just whitespace")
         return v.strip()
 
-    @validator('hashtags')
+    @field_validator('hashtags')
     def validate_hashtags(cls, v):
         cleaned_tags = []
         for tag in v:
@@ -127,7 +127,7 @@ class LinkedInPostOutput(BaseContentOutput):
         description="Interactive elements like polls or questions"
     )
 
-    @validator('content')
+    @field_validator('content')
     def validate_content_format(cls, v):
         if len(v) > 3000:
             raise ValueError('Content must not exceed 3000 characters')
@@ -135,7 +135,7 @@ class LinkedInPostOutput(BaseContentOutput):
             raise ValueError("Content cannot be empty or just whitespace")
         return v.strip()
 
-    @validator('hashtags')
+    @field_validator('hashtags')
     def validate_hashtags(cls, v):
         cleaned_tags = []
         for tag in v:
@@ -147,7 +147,7 @@ class LinkedInPostOutput(BaseContentOutput):
             raise ValueError("Must provide at least one valid hashtag")
         return cleaned_tags
 
-    @validator('interactive_elements')
+    @field_validator('interactive_elements')
     def validate_interactive_elements(cls, v):
         if v is None:
             return v
@@ -191,13 +191,13 @@ class CompanyBlogOutput(BaseContentOutput):
     )
     read_time: Optional[int] = None
 
-    @validator('word_count')
+    @field_validator('word_count')
     def validate_word_count(cls, v):
         if not 600 <= v <= 2000:
             raise ValueError('Blog post must be between 600-2000 words')
         return v
 
-    @validator('sections')
+    @field_validator('sections')
     def validate_sections(cls, v):
         section_types = {section.type for section in v}
         required_types = {'introduction', 'body', 'conclusion'}
@@ -212,7 +212,7 @@ class CompanyBlogOutput(BaseContentOutput):
             model.read_time = round(model.word_count / 200)
         return model
 
-    @validator('seo_elements')
+    @field_validator('seo_elements')
     def validate_seo_elements(cls, v):
         required_elements = {'title_tag', 'meta_description', 'canonical_url'}
         missing_elements = required_elements - set(v.keys())
