@@ -1,0 +1,670 @@
+2024-11-09 19:58:11,119 - root - ERROR - Error processing section 1: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,120 - root - ERROR - Error processing section 2: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,121 - root - ERROR - Error processing section 3: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,122 - root - ERROR - Error processing section 4: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,122 - root - ERROR - Error processing section 5: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,123 - root - ERROR - Error processing section 6: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,124 - root - ERROR - Error processing section 7: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,125 - root - ERROR - Error processing section 8: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,125 - root - ERROR - Error processing section 9: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,126 - root - ERROR - Error processing section 10: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,127 - root - ERROR - Error processing section 11: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,128 - root - ERROR - Error processing section 12: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,128 - root - ERROR - Error processing section 13: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,129 - root - ERROR - Error processing section 14: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,130 - root - ERROR - Error processing section 15: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,131 - root - ERROR - Error processing section 16: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,131 - root - ERROR - Error processing section 17: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,132 - root - ERROR - Error processing section 18: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,133 - root - ERROR - Error processing section 19: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,134 - root - ERROR - Error processing section 20: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,134 - root - ERROR - Error processing section 21: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,135 - root - ERROR - Error processing section 22: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,136 - root - ERROR - Error processing section 23: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,136 - root - ERROR - Error processing section 24: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,137 - root - ERROR - Error processing section 25: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,138 - root - ERROR - Error processing section 26: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,138 - root - ERROR - Error processing section 27: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,139 - root - ERROR - Error processing section 28: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,140 - root - ERROR - Error processing section 29: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,142 - root - ERROR - Error processing section 30: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,143 - root - ERROR - Error processing section 31: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:11,143 - root - ERROR - Error processing section 32: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2024-11-09 19:58:56,791 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 19:58:56,792 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 19:58:56,794 - root - INFO - Chain initialized for platform: blog
+2024-11-09 19:58:56,795 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 19:59:00,966 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:13,459 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:25,439 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:25,506 - root - INFO - Generated content for section 1
+2024-11-09 19:59:25,626 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 19:59:25,628 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 19:59:25,630 - root - INFO - Chain initialized for platform: blog
+2024-11-09 19:59:25,630 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 19:59:28,814 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:37,011 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:51,041 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 19:59:51,128 - root - INFO - Generated content for section 2
+2024-11-09 19:59:51,258 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 19:59:51,260 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 19:59:51,262 - root - INFO - Chain initialized for platform: blog
+2024-11-09 19:59:51,262 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 19:59:53,707 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:00:04,405 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:00:17,183 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:00:17,254 - root - INFO - Generated content for section 3
+2024-11-09 20:00:36,262 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:00:36,263 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:00:36,265 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:00:36,265 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:00:39,171 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:00:48,508 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:01:01,070 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:01:01,179 - root - INFO - Generated content for section 1
+2024-11-09 20:03:46,263 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:03:46,264 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:03:46,266 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:03:46,266 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:03:48,801 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:03:58,938 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:04:14,627 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:04:14,726 - root - INFO - Generated content for section 1
+2024-11-09 20:04:29,227 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:04:29,228 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:04:29,230 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:04:29,230 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:04:32,821 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:04:44,405 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:05:00,072 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:05:00,168 - root - INFO - Generated content for section 1
+2024-11-09 20:05:00,203 - root - ERROR - Error in main execution: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 100, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 33, in create_image_slideshow
+    if st.button("← Previous"):
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 223, in button
+    return self.dg._button(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 876, in _button
+    element_id = compute_and_register_element_id(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-09 20:05:28,066 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:05:28,067 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:05:28,069 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:05:28,069 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:05:30,590 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:05:38,882 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:05:53,935 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:05:54,007 - root - INFO - Generated content for section 1
+2024-11-09 20:05:54,030 - root - ERROR - Error in main execution: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 100, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 33, in create_image_slideshow
+    if st.button("← Previous"):
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 223, in button
+    return self.dg._button(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 876, in _button
+    element_id = compute_and_register_element_id(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-09 20:08:45,932 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:08:45,934 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:08:45,936 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:08:45,936 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:08:49,145 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:09:01,021 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:09:16,076 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:09:16,154 - root - INFO - Generated content for section 1
+2024-11-09 20:09:16,159 - root - ERROR - Error in main execution: st.session_state has no attribute "ct". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state.py", line 455, in __getitem__
+    return self._getitem(widget_id, key)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state.py", line 500, in _getitem
+    raise KeyError
+KeyError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state_proxy.py", line 129, in __getattr__
+    return self[key]
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state_proxy.py", line 100, in __getitem__
+    return get_session_state()[key]
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/safe_session_state.py", line 94, in __getitem__
+    return self._state[key]
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state.py", line 457, in __getitem__
+    raise KeyError(_missing_key_error_message(key))
+KeyError: 'st.session_state has no key "ct". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 79, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 34, in create_image_slideshow
+    st.session_state.ct=st.session_state.ct+1
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/state/session_state_proxy.py", line 131, in __getattr__
+    raise AttributeError(_missing_attr_error_message(key))
+AttributeError: st.session_state has no attribute "ct". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2024-11-09 20:10:00,354 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:10:00,355 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:10:00,357 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:10:00,357 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:10:04,008 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:10:12,215 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:10:25,926 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:10:25,985 - root - INFO - Generated content for section 1
+2024-11-09 20:13:46,911 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:13:46,912 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:13:46,914 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:13:46,914 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:13:52,362 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:14:01,378 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:14:14,583 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:14:14,648 - root - INFO - Generated content for section 1
+2024-11-09 20:14:14,653 - root - ERROR - Error in main execution: name 'hashlib' is not defined
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 79, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 19, in create_image_slideshow
+    slideshow_id = hashlib.md5(paths_string.encode()).hexdigest()[:8]
+NameError: name 'hashlib' is not defined
+2024-11-09 20:15:24,020 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:15:24,022 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:15:24,024 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:15:24,024 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:15:28,314 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:15:41,215 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:15:41,269 - root - WARNING - Generation attempt failed: Failed to parse LinkedInPostOutput from completion {"content_type": "linkedin_post", "platform": "LinkedIn", "target_audience": "Health and wellness enthusiasts", "content": "\ud83c\udf3f **Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen** \ud83c\udf3f\n\nSind Sie bereit f\u00fcr eine gesunde Auszeit, aber eine vollst\u00e4ndige Kur ist nicht in Sicht? Garmisch-Partenkirchen bietet mit seinem einzigartigen Heilklima die perfekte Gelegenheit, K\u00f6rper und Geist zu regenerieren. Ob bei Wanderungen, Bergtouren oder einfachen Spazierg\u00e4ngen \u2013 die nat\u00fcrliche Umgebung wirkt nachhaltig auf Ihre Gesundheit.\n\n**Warum Garmisch-Partenkirchen?**\n\n- **Allergen-Armut und viele Sonnentage:** Ideal f\u00fcr Allergiker und alle, die von frischer Luft profitieren m\u00f6chten.\n- **Wirkungsvolle Naturerlebnisse:** Nutzen Sie die heilklimatischen Faktoren wie Thermoregulation und Sonnenlicht gezielt f\u00fcr Ihre Gesundheit.\n- **Individuelle Gesundheitsprogramme:** Ob ein kurzer Kur(z)tripp oder eine dreiw\u00f6chige ambulante Kur auf Rezept \u2013 hier finden Sie das passende Angebot.\n\n**Key Takeaways:**\n- **Thermoregulation:** Nutzen Sie die Temperaturunterschiede der Berge f\u00fcr Ihre Gesundheit.\n- **Sonnenlicht:** Erleben Sie die antidepressive Wirkung des direkten Sonnenlichts.\n- **Atemwege:** St\u00e4rken Sie Ihre Lunge auf dem Atemwegslehrpfad.\n\n**Call to Action:**\nErleben Sie die heilende Kraft der Natur in Garmisch-Partenkirchen. Besuchen Sie unsere Webseite und buchen Sie Ihre heilklimatische Wanderung noch heute: [gapa-tourismus.de/erlebnisse](http://gapa-tourismus.de/erlebnisse)\n\n**Interaktive Elemente:**\n- **Frage:** Wie integrieren Sie Naturerlebnisse in Ihren Alltag?\n- **Umfrage:** Welche heilklimatische Aktivit\u00e4t w\u00fcrden Sie am meisten genie\u00dfen?\n\n**Hashtags:** #Heilklima #Gesundheit #GarmischPartenkirchen #Wandern #Erholung", "title": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen", "key_insights": ["Thermoregulation f\u00fcr Gesundheit", "Antidepressive Wirkung von Sonnenlicht", "Atemwege st\u00e4rken durch Naturerlebnisse"], "call_to_action": "Erleben Sie die heilende Kraft der Natur in Garmisch-Partenkirchen. Besuchen Sie unsere Webseite und buchen Sie Ihre heilklimatische Wanderung noch heute.", "hashtags": ["#Heilklima", "#Gesundheit", "#GarmischPartenkirchen", "#Wandern", "#Erholung"], "interactive_elements": {"question": ["Wie integrieren Sie Naturerlebnisse in Ihren Alltag?"], "poll": ["Welche heilklimatische Aktivit\u00e4t w\u00fcrden Sie am meisten genie\u00dfen?"]}, "timestamp": "2023-11-06T14:50:13.910242", "pydantic_object": "LinkedIn-2024-11-09T20:15:41.269719"}. Got: 1 validation error for LinkedInPostOutput
+call_to_action
+  String should have at most 150 characters [type=string_too_long, input_value='Erleben Sie die heilende...e Wanderung noch heute.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_too_long
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+2024-11-09 20:15:54,527 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:16:10,291 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:16:10,392 - root - WARNING - Generation attempt failed: Failed to parse CompanyBlogOutput from completion {"content_type": "blog_post", "platform": "Company Blog", "target_audience": "Health enthusiasts and travelers", "title": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen", "meta_description": "Entdecken Sie die heilende Kraft des Klimas in Garmisch-Partenkirchen. Erfahren Sie, wie Sie durch Wanderungen und Aktivit\u00e4ten im Heilklima Ihre Gesundheit nachhaltig verbessern k\u00f6nnen.", "keywords": ["Heilklima", "Garmisch-Partenkirchen", "Wandern", "Gesundheit", "Erholung"], "sections": [{"type": "introduction", "heading": "Warum ein Kur(z)tripp ins Heilklima?", "content": "Reif f\u00fcr eine Portion Erholung, aber weit weg von einer Kur? Bei Wanderungen, Bergtouren oder auch einfachen Spazierg\u00e4ngen im Heilklima von Garmisch-Partenkirchen erlebt man eine gesunde Auszeit. Mit nachhaltiger Wirkung. In unserer hektischen Welt ist es wichtig, einen Ausgleich zu finden, der sich leicht in den Alltag integrieren l\u00e4sst und Spa\u00df macht. Garmisch-Partenkirchen bietet genau das: eine nat\u00fcrliche Umgebung, die Gesundheit und Wohlbefinden f\u00f6rdert."}, {"type": "body", "heading": "Die heilende Kraft der Natur erleben", "content": "Allergen-Armut, wenig Nebel, viele Sonnentage und kaum schw\u00fcles Wetter sind ideale Voraussetzungen f\u00fcr Erholung. Bei einer heilklimatischen Wanderung in der Gruppe mit Bettina lernt man, die nat\u00fcrlichen Wirkfaktoren zu nutzen. Die Thermoregulation, das Sonnenlicht und die frische Bergluft wirken positiv auf K\u00f6rper und Geist. Der Atemwegslehrpfad bietet \u00dcbungen f\u00fcr tiefes Durchatmen, was besonders Allergikern und Lungengeschw\u00e4chten zugutekommt. Diese Wanderungen sind kein zus\u00e4tzlicher Aufwand, sondern passen perfekt in den Alltag und bieten nachhaltige Erholung."}, {"type": "body", "heading": "Wandern auf Rezept und individuelle Gesundheitsprogramme", "content": "Manchmal ist eine Auszeit dringend n\u00f6tig. In Garmisch-Partenkirchen kann man eine ambulante Kur auf Rezept erhalten. Die 'Gesundheitsm\u00e4dels' Lena, Simone und Bettina bieten ein Rundum-Sorglos-Paket, das individuell auf den Gesundheitszustand abgestimmt ist. Es gibt keine Kurklinik, sondern die Freiheit, die Unterkunft selbst zu w\u00e4hlen. Erg\u00e4nzt wird das Programm durch Wunschleistungen wie Yoga oder Kr\u00e4uterwanderungen. Ein Kur(z)trip ins Heilklima kann schon in wenigen Tagen Erholung und neue Kraft bringen."}, {"type": "conclusion", "heading": "Gesundheit 'to go' in Garmisch-Partenkirchen", "content": "Nicht nur in den Bergen, sondern auch im Ort gibt es viele M\u00f6glichkeiten, etwas f\u00fcr die Gesundheit zu tun. Der Michael-Ende-Kurpark und der Lahti-Park bieten zahlreiche Aktivit\u00e4ten, die Spa\u00df machen und gesund sind. Ein Abendspaziergang durch die Wiesen und ein Besuch in einem der regionalen Restaurants runden den Tag ab. Die Natur in Garmisch-Partenkirchen zeigt, wie einfach und wirkungsvoll Gesundheit sein kann. Egal, ob bei einem Tagesausflug oder einer dreiw\u00f6chigen Kur \u2013 die heilende Kraft der Natur ist sp\u00fcrbar und nachhaltig."}], "word_count": 1200, "seo_elements": {"canonical_url": "https://example.com/blog/kurztripp-ins-heilklima", "meta_description": "Entdecken Sie die heilende Kraft des Klimas in Garmisch-Partenkirchen. Erfahren Sie, wie Sie durch Wanderungen und Aktivit\u00e4ten im Heilklima Ihre Gesundheit nachhaltig verbessern k\u00f6nnen.", "title_tag": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen"}, "read_time": 8, "timestamp": "2024-11-06T14:50:13.910242", "pydantic_object": "Company Blog-2024-11-09T20:16:10.391879"}. Got: 1 validation error for CompanyBlogOutput
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Entdecken Sie die heilen...tig verbessern können.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_too_long
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+2024-11-09 20:16:31,538 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:16:31,648 - root - INFO - Generated content for section 1
+2024-11-09 20:16:31,672 - root - ERROR - Error in main execution: AlertMixin.error() got an unexpected keyword argument 'key'
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 57, in create_image_slideshow
+    st.image(current_image,
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+TypeError: ImageMixin.image() got an unexpected keyword argument 'key'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 79, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 68, in create_image_slideshow
+    st.error(f"Error loading image: {str(e)}", key=error_key)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+TypeError: AlertMixin.error() got an unexpected keyword argument 'key'
+2024-11-09 20:17:12,068 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:17:12,069 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:17:12,071 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:17:12,071 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:17:15,214 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:17:24,733 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:17:39,584 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:17:39,656 - root - INFO - Generated content for section 1
+2024-11-09 20:20:03,704 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:20:03,705 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:20:03,707 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:20:03,707 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:20:07,457 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:20:17,602 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:20:46,476 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:20:46,552 - root - INFO - Generated content for section 1
+2024-11-09 20:20:46,567 - root - ERROR - Error in main execution: AlertMixin.error() got an unexpected keyword argument 'key'
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 55, in create_image_slideshow
+    st.image(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+TypeError: ImageMixin.image() got an unexpected keyword argument 'key'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 79, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 70, in create_image_slideshow
+    st.error(f"Error loading image: {str(e)}", key=error_key)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+TypeError: AlertMixin.error() got an unexpected keyword argument 'key'
+2024-11-09 20:22:53,594 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:22:53,595 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:22:53,597 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:22:53,597 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:22:56,929 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:23:07,372 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:23:30,922 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:23:31,002 - root - INFO - Generated content for section 1
+2024-11-09 20:23:31,019 - root - ERROR - Error in main execution: There are multiple elements with the same `key='prev_9bedb9d8_683871062243074326'`. To fix this, please make sure that the `key` argument is unique for each element you create.
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 202, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 100, in display_content_set
+    create_image_slideshow(images)
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 47, in create_image_slideshow
+    if st.button("←", key=prev_key):
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 223, in button
+    return self.dg._button(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 876, in _button
+    element_id = compute_and_register_element_id(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 127, in _register_element_id
+    raise StreamlitDuplicateElementKey(user_key)
+streamlit.errors.StreamlitDuplicateElementKey: There are multiple elements with the same `key='prev_9bedb9d8_683871062243074326'`. To fix this, please make sure that the `key` argument is unique for each element you create.
+2024-11-09 20:26:18,549 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:26:18,551 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:26:18,552 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:26:18,553 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:26:21,917 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:26:32,053 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:26:57,351 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:26:57,525 - root - INFO - Generated content for section 1
+2024-11-09 20:27:38,487 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:27:38,489 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:27:38,491 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:27:38,491 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:27:41,480 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:27:54,382 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:28:07,078 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:28:07,125 - root - INFO - Generated content for section 1
+2024-11-09 20:30:59,579 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:30:59,581 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:30:59,582 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:30:59,582 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:31:03,975 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:31:13,443 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:31:32,296 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:31:32,371 - root - INFO - Generated content for section 1
+2024-11-09 20:32:40,757 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:32:40,758 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:32:40,760 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:32:40,760 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:32:44,749 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:32:56,462 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:33:11,411 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:33:11,462 - root - INFO - Generated content for section 1
+2024-11-09 20:34:38,162 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:34:38,163 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:34:38,165 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:34:38,165 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:34:54,779 - openai._base_client - INFO - Retrying request to /chat/completions in 0.407493 seconds
+2024-11-09 20:35:13,208 - openai._base_client - INFO - Retrying request to /chat/completions in 0.760757 seconds
+2024-11-09 20:35:25,496 - root - WARNING - Generation attempt failed: Connection error.
+2024-11-09 20:35:25,496 - root - ERROR - Error generating content with image: Connection error.
+2024-11-09 20:35:25,497 - root - ERROR - Error processing section 1: Connection error.
+2024-11-09 20:38:23,944 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:38:23,946 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:38:23,949 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:38:23,949 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:38:35,819 - openai._base_client - INFO - Retrying request to /chat/completions in 0.388161 seconds
+2024-11-09 20:38:48,108 - openai._base_client - INFO - Retrying request to /chat/completions in 0.832897 seconds
+2024-11-09 20:39:04,312 - root - WARNING - Generation attempt failed: Connection error.
+2024-11-09 20:39:04,312 - root - ERROR - Error generating content with image: Connection error.
+2024-11-09 20:39:04,313 - root - ERROR - Error processing section 1: Connection error.
+2024-11-09 20:40:37,100 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:40:37,101 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:40:37,103 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:40:37,103 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:40:55,416 - openai._base_client - INFO - Retrying request to /chat/completions in 0.469048 seconds
+2024-11-09 20:41:07,705 - openai._base_client - INFO - Retrying request to /chat/completions in 0.987371 seconds
+2024-11-09 20:41:23,064 - root - WARNING - Generation attempt failed: Connection error.
+2024-11-09 20:41:23,065 - root - ERROR - Error generating content with image: Connection error.
+2024-11-09 20:41:23,065 - root - ERROR - Error processing section 1: Connection error.
+2024-11-09 20:42:24,102 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:42:24,105 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:42:24,107 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:42:24,108 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:42:35,692 - openai._base_client - INFO - Retrying request to /chat/completions in 0.415008 seconds
+2024-11-09 20:42:51,052 - openai._base_client - INFO - Retrying request to /chat/completions in 0.870747 seconds
+2024-11-09 20:43:06,412 - root - WARNING - Generation attempt failed: Connection error.
+2024-11-09 20:43:06,412 - root - ERROR - Error generating content with image: Connection error.
+2024-11-09 20:43:06,413 - root - ERROR - Error processing section 1: Connection error.
+2024-11-09 20:46:17,056 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:46:17,057 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:46:17,059 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:46:17,059 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:46:32,237 - openai._base_client - INFO - Retrying request to /chat/completions in 0.407436 seconds
+2024-11-09 20:46:50,669 - openai._base_client - INFO - Retrying request to /chat/completions in 0.906613 seconds
+2024-11-09 20:47:02,956 - root - WARNING - Generation attempt failed: Connection error.
+2024-11-09 20:47:02,956 - root - ERROR - Error generating content with image: Connection error.
+2024-11-09 20:47:02,956 - root - ERROR - Error processing section 1: Connection error.
+2024-11-09 20:49:08,790 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:49:08,791 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:49:08,793 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:49:08,793 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:49:11,565 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:49:19,503 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:49:35,663 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:49:35,733 - root - INFO - Generated content for section 1
+2024-11-09 20:55:08,518 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:55:08,519 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:55:08,521 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:55:08,521 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:55:12,391 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:55:20,818 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:55:38,944 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:55:38,945 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:55:38,947 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:55:38,947 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:55:39,272 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:55:39,359 - root - INFO - Generated content for section 1
+2024-11-09 20:55:42,160 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:55:51,788 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:56:12,527 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:56:12,602 - root - INFO - Generated content for section 1
+2024-11-09 20:57:09,106 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 20:57:09,107 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 20:57:09,109 - root - INFO - Chain initialized for platform: blog
+2024-11-09 20:57:09,109 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 20:57:12,037 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:57:17,557 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:57:32,747 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:57:32,840 - root - WARNING - Generation attempt failed: Failed to parse CompanyBlogOutput from completion {"content_type": "blog_post", "platform": "Company Blog", "target_audience": "Health enthusiasts and travelers", "title": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen", "meta_description": "Erleben Sie eine gesunde Auszeit im Heilklima von Garmisch-Partenkirchen. Entdecken Sie die Vorteile von heilklimatischen Wanderungen und wie sie Ihre Gesundheit nachhaltig verbessern k\u00f6nnen.", "keywords": ["Heilklima", "Garmisch-Partenkirchen", "Wandern", "Gesundheit", "Erholung"], "sections": [{"type": "introduction", "heading": "Warum ein Kur(z)tripp ins Heilklima?", "content": "In der heutigen hektischen Welt ist es oft schwierig, sich Zeit f\u00fcr die eigene Gesundheit zu nehmen. Zwischen Arbeit, Familie und anderen Verpflichtungen bleibt oft wenig Raum f\u00fcr Erholung. Doch genau hier setzt das Konzept des Kur(z)tripps ins Heilklima an. Garmisch-Partenkirchen bietet mit seinem einzigartigen Heilklima die perfekte Gelegenheit, eine gesunde Auszeit zu erleben \u2013 ganz ohne den Stress einer traditionellen Kur. Erfahren Sie, wie Sie durch Wanderungen und Spazierg\u00e4nge in dieser Region nachhaltig Ihre Gesundheit f\u00f6rdern k\u00f6nnen."}, {"type": "body", "heading": "Die Vorteile des Heilklimas in Garmisch-Partenkirchen", "content": "Garmisch-Partenkirchen ist bekannt f\u00fcr sein heilklimatisches Klima, das sich durch Allergen-Armut, viele Sonnentage und wenig Nebel auszeichnet. Diese Bedingungen sind ideal f\u00fcr Menschen, die eine Erholung vom stressigen Alltag suchen. Bei gef\u00fchrten Wanderungen mit Experten wie Bettina lernen Sie, wie Sie die nat\u00fcrlichen Wirkfaktoren wie Thermoregulation und Sonnenlicht gezielt f\u00fcr Ihre Gesundheit nutzen k\u00f6nnen. Die Wanderungen bieten nicht nur k\u00f6rperliche Bet\u00e4tigung, sondern auch mentale Entspannung, da der Kopf zur Ruhe kommt und die Natur intensiver wahrgenommen wird. Neben den Wanderungen gibt es auch spezielle Angebote wie den Atemwegslehrpfad, der besonders f\u00fcr Allergiker und Menschen mit Atemwegserkrankungen von Vorteil ist."}, {"type": "body", "heading": "Heilklimatische Wanderungen und ihre Wirkung", "content": "Heilklimatische Wanderungen sind mehr als nur ein Spaziergang in der Natur. Sie sind eine gezielte Methode, um die gesundheitlichen Vorteile der Umgebung zu nutzen. Die Temperaturunterschiede zwischen Tal und Gipfel f\u00f6rdern die Thermoregulation, w\u00e4hrend das direkte Sonnenlicht auf die Netzhaut eine antidepressive Wirkung entfalten kann. Diese Wanderungen sind nicht nur f\u00fcr Menschen mit gesundheitlichen Beschwerden geeignet, sondern bieten jedem die M\u00f6glichkeit, die eigene Gesundheit zu st\u00e4rken und neue Energie zu tanken. Regelm\u00e4\u00dfige Teilnahme an diesen Wanderungen kann langfristig zu einer Verbesserung des Wohlbefindens f\u00fchren."}, {"type": "conclusion", "heading": "Fazit: Gesundheit und Erholung im Heilklima", "content": "Ein Kur(z)tripp ins Heilklima von Garmisch-Partenkirchen bietet eine hervorragende M\u00f6glichkeit, dem Alltagsstress zu entfliehen und gleichzeitig etwas Gutes f\u00fcr die eigene Gesundheit zu tun. Die Kombination aus frischer Luft, Bewegung und der einzigartigen Umgebung sorgt f\u00fcr eine nachhaltige Erholung. Egal ob f\u00fcr ein Wochenende oder eine l\u00e4ngere Auszeit \u2013 die heilklimatischen Angebote in Garmisch-Partenkirchen sind flexibel und individuell anpassbar. Nutzen Sie die Gelegenheit, um K\u00f6rper und Geist zu regenerieren und mit neuer Energie in den Alltag zur\u00fcckzukehren."}], "word_count": 1200, "seo_elements": {"canonical_url": "https://example.com/blog/kurztripp-ins-heilklima", "meta_description": "Erleben Sie eine gesunde Auszeit im Heilklima von Garmisch-Partenkirchen. Entdecken Sie die Vorteile von heilklimatischen Wanderungen und wie sie Ihre Gesundheit nachhaltig verbessern k\u00f6nnen.", "title_tag": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen"}, "read_time": 8, "timestamp": "2024-11-06T14:50:13.910242", "pydantic_object": "Company Blog-2024-11-09T20:57:32.840202"}. Got: 1 validation error for CompanyBlogOutput
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Erleben Sie eine gesunde...tig verbessern können.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_too_long
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+2024-11-09 20:58:02,353 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 20:58:02,535 - root - INFO - Generated content for section 1
+2024-11-09 21:00:02,968 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:00:02,969 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:00:02,970 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:00:02,970 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:00:06,152 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:00:22,234 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:00:42,154 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:00:42,224 - root - INFO - Generated content for section 1
+2024-11-09 21:04:49,171 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:04:49,172 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:04:49,174 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:04:49,174 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:04:52,185 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:05:12,141 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:05:26,906 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:05:26,990 - root - INFO - Generated content for section 1
+2024-11-09 21:06:38,246 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:06:38,247 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:06:38,249 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:06:38,249 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:06:41,479 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:06:52,100 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:07:12,640 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:07:12,758 - root - INFO - Generated content for section 1
+2024-11-09 21:08:47,563 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:08:47,564 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:08:47,567 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:08:47,567 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:08:50,564 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:09:02,683 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:09:35,435 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:09:35,506 - root - WARNING - Generation attempt failed: Failed to parse CompanyBlogOutput from completion {"timestamp": "2023-11-06T14:50:13.910242", "content_type": "blog_post", "platform": "Company Blog", "target_audience": "Health enthusiasts and travelers", "title": "Kur(z)tripp ins Heilklima: Erholung im Heilklima von Garmisch-Partenkirchen", "meta_description": "Entdecken Sie die heilende Wirkung des Klimas in Garmisch-Partenkirchen. Erfahren Sie, wie Sie durch Wanderungen und Naturerlebnisse nachhaltig Ihre Gesundheit f\u00f6rdern k\u00f6nnen.", "keywords": ["Heilklima", "Garmisch-Partenkirchen", "Wandern", "Gesundheit", "Erholung"], "sections": [{"type": "introduction", "heading": "Warum ein Kur(z)tripp ins Heilklima?", "content": "In einer Welt voller Stress und Hektik ist es wichtig, sich Zeit f\u00fcr die eigene Gesundheit zu nehmen. Doch nicht jeder hat die M\u00f6glichkeit, eine lange Kur zu machen. Ein Kur(z)tripp ins Heilklima von Garmisch-Partenkirchen bietet eine ideale M\u00f6glichkeit, um eine gesunde Auszeit zu erleben. Durch Wanderungen und Spazierg\u00e4nge in der frischen Bergluft k\u00f6nnen Sie nachhaltig Kraft tanken und Ihr Wohlbefinden steigern."}, {"type": "body", "heading": "Die heilende Kraft der Natur erleben", "content": "Garmisch-Partenkirchen bietet mit seinem Heilklima die perfekten Bedingungen f\u00fcr Erholungssuchende. Die geringe Allergenbelastung, viele Sonnentage und die klare Bergluft sind ideale Voraussetzungen f\u00fcr eine gesunde Auszeit. Bei gef\u00fchrten Wanderungen mit den 'Gesundheitsm\u00e4dels' Lena, Simone und Bettina lernen Sie, wie Sie die nat\u00fcrlichen Wirkfaktoren wie Thermoregulation und Sonnenlicht gezielt nutzen k\u00f6nnen. Besonders die Thermoregulation, das Wechselspiel von W\u00e4rme und K\u00e4lte, st\u00e4rkt das Immunsystem und f\u00f6rdert die Gesundheit. Auch das direkte Sonnenlicht, das auf die Netzhaut trifft, kann eine antidepressive Wirkung entfalten. Die heilklimatischen Wanderungen sind nicht nur gesund, sondern auch ein Erlebnis f\u00fcr die Sinne."}, {"type": "body", "heading": "Wandern auf Rezept: Eine besondere Kur", "content": "Manchmal reicht eine kurze Auszeit nicht aus, und der K\u00f6rper ben\u00f6tigt eine intensivere Erholung. In solchen F\u00e4llen kann eine ambulante Kur in Garmisch-Partenkirchen, wie das 'Heilklimawandern', eine L\u00f6sung sein. Diese einzigartige Vorsorge- und Rehama\u00dfnahme kann vom Hausarzt verschrieben werden und bietet ein individuelles Gesundheitsprogramm, das speziell auf Ihre Bed\u00fcrfnisse zugeschnitten ist. Die 'Gesundheitsm\u00e4dels' k\u00fcmmern sich um alle organisatorischen Details, sodass Sie sich voll und ganz auf Ihre Genesung konzentrieren k\u00f6nnen. Die Unterkunft kann individuell gew\u00e4hlt werden, was den Aufenthalt besonders stressfrei und angenehm macht."}, {"type": "conclusion", "heading": "Gesundheit zum Mitnehmen", "content": "Ein Kur(z)tripp ins Heilklima von Garmisch-Partenkirchen ist mehr als nur eine kurze Erholungspause. Es ist eine M\u00f6glichkeit, die eigene Gesundheit nachhaltig zu f\u00f6rdern und neue Energie zu tanken. Egal, ob bei einer Tageswanderung oder einer mehrw\u00f6chigen Kur \u2013 die heilende Kraft der Natur ist stets sp\u00fcrbar. Nutzen Sie die Gelegenheit, um die positiven Effekte von Luft, Sonne und Bewegung in Ihren Alltag zu integrieren. So k\u00f6nnen Sie auch nach Ihrem Aufenthalt in Garmisch-Partenkirchen von den gesundheitlichen Vorteilen profitieren."}], "word_count": 1200, "seo_elements": {"canonical_url": "https://example.com/blog/kurztripp-ins-heilklima", "meta_description": "Entdecken Sie die heilende Wirkung des Klimas in Garmisch-Partenkirchen.", "title_tag": "Kur(z)tripp ins Heilklima: Erholung in Garmisch-Partenkirchen"}, "pydantic_object": "Company Blog-2024-11-09T21:09:35.505813"}. Got: 1 validation error for CompanyBlogOutput
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Entdecken Sie die heilen...dheit fördern können.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_too_long
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+2024-11-09 21:10:06,483 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:10:06,542 - root - INFO - Generated content for section 1
+2024-11-09 21:16:03,246 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:16:03,248 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:16:03,249 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:16:03,249 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:16:06,418 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:16:16,243 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:16:46,888 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:16:46,987 - root - INFO - Generated content for section 1
+2024-11-09 21:16:47,202 - root - ERROR - Error in main execution: name 'images' is not defined
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 80, in display_content_set
+    create_image_slideshow(images,slideshow_id=platform+str(st.session_state.global_increment))
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 77, in create_image_slideshow
+    <Slideshow images={images} />,
+NameError: name 'images' is not defined. Did you mean: 'Image'?
+2024-11-09 21:19:49,265 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:19:49,267 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:19:49,269 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:19:49,269 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:19:52,567 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:20:05,926 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:20:37,441 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:20:37,524 - root - INFO - Generated content for section 1
+2024-11-09 21:20:37,720 - root - ERROR - Error in main execution: name 'imagesData' is not defined
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 80, in display_content_set
+    create_image_slideshow(
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 77, in create_image_slideshow
+    <Slideshow images={imagesData} />,
+NameError: name 'imagesData' is not defined. Did you mean: 'images_data'?
+2024-11-09 21:23:44,890 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:23:44,891 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:23:44,893 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:23:44,893 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:23:48,819 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:24:03,322 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:24:30,874 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:24:30,925 - root - INFO - Generated content for section 1
+2024-11-09 21:24:31,143 - root - ERROR - Error in main execution: name 'images' is not defined
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 80, in display_content_set
+    create_image_slideshow(
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 66, in create_image_slideshow
+    const Slideshow = ({images}) => {{
+NameError: name 'images' is not defined. Did you mean: 'Image'?
+2024-11-09 21:25:42,372 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:25:42,374 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:25:42,376 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:25:42,376 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:25:45,229 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:26:00,288 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:26:30,840 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:26:30,917 - root - INFO - Generated content for section 1
+2024-11-09 21:28:03,022 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:28:03,023 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:28:03,025 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:28:03,025 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:28:07,135 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:28:17,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:28:51,779 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:28:51,904 - root - INFO - Generated content for section 1
+2024-11-09 21:28:52,129 - root - ERROR - Error in main execution: IframeMixin._html() got an unexpected keyword argument 'key'
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 80, in display_content_set
+    create_image_slideshow(
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 130, in create_image_slideshow
+    components.html(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+TypeError: IframeMixin._html() got an unexpected keyword argument 'key'
+2024-11-09 21:30:06,680 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:30:06,681 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:30:06,683 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:30:06,683 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:30:11,309 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:30:24,238 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:31:09,676 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:31:09,848 - root - WARNING - Generation attempt failed: Failed to parse CompanyBlogOutput from completion {"timestamp": "2024-11-06T14:50:13.910242", "content_type": "blog_post", "platform": "Company Blog", "target_audience": "Health enthusiasts and travelers", "title": "Kur(z)tripp ins Heilklima: Erholung und Gesundheit in Garmisch-Partenkirchen", "meta_description": "Entdecken Sie die heilende Kraft der Natur in Garmisch-Partenkirchen und erfahren Sie, wie ein Kur(z)tripp ins Heilklima Ihre Gesundheit nachhaltig verbessern kann.", "keywords": ["Heilklima", "Garmisch-Partenkirchen", "Gesundheit", "Wandern", "Erholung"], "sections": [{"type": "introduction", "heading": "Warum ein Kur(z)tripp ins Heilklima?", "content": "Reif f\u00fcr eine Portion Erholung, aber weit weg von einer Kur? Bei Wanderungen, Bergtouren oder auch einfachen Spazierg\u00e4ngen im Heilklima von Garmisch-Partenkirchen erlebt man eine gesunde Auszeit. Mit nachhaltiger Wirkung. In einer Welt, die von Stress und Hektik gepr\u00e4gt ist, bietet das Heilklima eine willkommene M\u00f6glichkeit, K\u00f6rper und Geist zu regenerieren. Doch was macht Garmisch-Partenkirchen zu einem so besonderen Ort f\u00fcr Erholungssuchende?"}, {"type": "body", "heading": "Die heilenden Kr\u00e4fte der Natur erleben", "content": "Allergen-Armut, wenig Nebel, besonders viele Sonnentage und kaum schw\u00fcles Wetter sind schon einmal beste Voraussetzungen. Bei einer heilklimatischen Wanderung in der Gruppe mit Bettina lernt man die nat\u00fcrlichen Wirkfaktoren geradezu im Vorbeigehen zu nutzen. Beim Gehen kommt der Kopf zur Ruhe, die Gedanken schlie\u00dfen sich dem Geh-Rhythmus an und Schritt um Schritt wird die Natur mit allen Sinnen immer intensiver wahrgenommen. Bettina zeigt, wie man Atmung, Achtsamkeit und Pulskontrolle gezielt f\u00fcr die Gesundheit einsetzen kann. So durchwandert man alle heilklimatischen Wirkfaktoren. Angefangen bei der sogenannten Thermoregulation. Unten im Tal ist es warm und umso h\u00f6her man kommt, desto frischer wird die Temperatur. F\u00fc\u00dfe in den Gebirgsbach und der K\u00e4ltereiz kann seine Wirkung entfalten. Ganz mutige h\u00fcpfen sogar in einen kalten See, aber auch mal nur die Arme in einem Brunnen k\u00fchlen unterst\u00fctzt den Organismus. Ein weiterer entscheidender Wirkfaktor des Heilklimas ist das Sonnenlicht. Einmal bitte Sonnenbrille absetzen! Simone erl\u00e4utert, dass erst wenn das Sonnenlicht direkt auf die Netzhaut gelangt, die antidepressive Wirkung eintreten kann. Um es intensiv zu sp\u00fcren, gibt es auf dem Wank bequeme Sonnenliegen und man kann dabei ganz nebenbei die grandiose Aussicht genie\u00dfen."}, {"type": "body", "heading": "Wandern auf Rezept und Gesundheit 'to go'", "content": "Manchmal passiert es einfach. Der Akku ist leer, man f\u00fchlt sich richtig krank und braucht tats\u00e4chlich eine Auszeit. Dann auf nach Garmisch-Partenkirchen zu einer ambulanten Kur auf Rezept 'Heilklimawandern'. Der Hausarzt kann eine dreiw\u00f6chige Kur in Garmisch-Partenkirchen verschreiben \u2013 als Vorsorge- und Rehama\u00dfnahme bei z. B. Ersch\u00f6pfung oder Herz-Kreislauf-Problemen. Das gibt es sonst nirgendwo in Deutschland. Und da kommen auch wieder unsere 'Gesundheitsm\u00e4dels' ins Spiel. Bettina, Simone und Lena k\u00fcmmern sich um ein Rundum-Sorglos-Paket. Sie vereinbaren den Termin beim Kurarzt vor Ort, bei dem ein individuelles Programm ausgearbeitet wird. Die Wanderrouten schneiden sie speziell auf den jeweiligen Gesundheitszustand zu und k\u00fcmmern sich auch sonst um alle wichtigen Dinge. Das Gute dabei: Es gibt keine Kurklinik. Man kann sich seine Unterkunft so w\u00e4hlen, wie man mag. Vom gehobenen Hotel mit exklusivem Spa \u00fcber eine gem\u00fctliche Ferienwohnung bis zur Privatwohnung von Freunden. Alles ist m\u00f6glich. Ganz individuell und ganz ohne Stress."}, {"type": "conclusion", "heading": "Fazit: Gesundheit und Erholung im Heilklima", "content": "Nicht nur in den Bergen, sondern auch im Ort kann man immer wieder was f\u00fcr die Gesundheit tun. Im Garmischer Zentrum liegt der Michael-Ende-Kurpark. Kneippbecken im Bach, Barfu\u00dfpfad, Rasen-Labyrinth \u2013 M\u00f6glichkeiten gibt es gen\u00fcgend. Oder lieber der neue Lahti-Park, der entlang des geologischen Steinepfads an der Partnach Richtung Olympia Skistadion liegt? Die Stationen verleiten geradezu zu spielerischer Bewegung \u2013 und ganz gewiss nicht nur Kinder: Balance-Elemente mit Stangen oder einer Wippe, ein in den Boden eingelassenes Trampolin oder auch Bewegungsger\u00e4te, die sogar von Rollstuhlfahrern genutzt werden k\u00f6nnen. Ein gesunder Abendspaziergang mit Spa\u00df dann noch durch die Wiesen, danach nach Partenkirchen in eines der Gasth\u00e4user und Restaurants, in denen viel Wert auf Regionalit\u00e4t und Saisonalit\u00e4t gelegt wird und der Tag k\u00f6nnte nicht ges\u00fcnder sein. Und last but not least: Auf einem Gipfel stehen und sei es ein noch so kleiner H\u00fcgel, den Weitblick genie\u00dfen und einfach nur bei sich sein \u2013 das ist Urlaub vom Alltagsballast. Urlaub f\u00fcr K\u00f6rper und Seele. Und Urlaub zum Gesundwerden und -bleiben. Es ist wirklich erstaunlich, welch enorme Wirkkraft die Natur mit so Allt\u00e4glichem wie Luft, Sonne und Temperatur hat. Egal, ob beim bewusst genossenen Tagesausflug oder bei einer dreiw\u00f6chigen Kur. Wenn man\u2019s einmal erlebt und gesp\u00fcrt hat, kann man ganz einfach selbst etwas f\u00fcr die eigene Gesundheit tun. Nachhaltig."}], "word_count": 1200, "seo_elements": {"canonical_url": "https://example.com/blog/kurztripp-ins-heilklima", "meta_description": "Entdecken Sie die heilende Kraft der Natur in Garmisch-Partenkirchen und erfahren Sie, wie ein Kur(z)tripp ins Heilklima Ihre Gesundheit nachhaltig verbessern kann.", "title_tag": "Kur(z)tripp ins Heilklima: Erholung und Gesundheit in Garmisch-Partenkirchen"}, "read_time": 8, "pydantic_object": "Company Blog-2024-11-09T21:31:09.847857"}. Got: 1 validation error for CompanyBlogOutput
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Entdecken Sie die heilen...haltig verbessern kann.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_too_long
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+2024-11-09 21:31:45,956 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:31:46,036 - root - INFO - Generated content for section 1
+2024-11-09 21:33:57,773 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:33:57,774 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:33:57,776 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:33:57,776 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:34:02,377 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:34:10,826 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:34:46,026 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:34:46,206 - root - INFO - Generated content for section 1
+2024-11-09 21:38:16,117 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:38:16,119 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:38:16,120 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:38:16,120 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:38:19,927 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:38:28,907 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:38:58,441 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:38:58,511 - root - INFO - Generated content for section 1
+2024-11-09 21:40:08,310 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:40:08,312 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:40:08,313 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:40:08,314 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:40:12,468 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:40:23,992 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:40:43,987 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:40:44,097 - root - INFO - Generated content for section 1
+2024-11-09 21:42:07,641 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:42:07,643 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:42:07,645 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:42:07,645 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:42:10,694 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:42:19,720 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:43:01,746 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:43:01,824 - root - INFO - Generated content for section 1
+2024-11-09 21:43:01,870 - root - ERROR - Error in main execution: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 104, in display_content_set
+    create_image_slideshow(
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 44, in create_image_slideshow
+    prev, next = st.button("Previous"), st.button("Next")
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 223, in button
+    return self.dg._button(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/widgets/button.py", line 876, in _button
+    element_id = compute_and_register_element_id(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-09 21:46:58,739 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:46:58,740 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:46:58,742 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:46:58,742 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:47:01,875 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:47:12,152 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:47:39,168 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:47:39,257 - root - INFO - Generated content for section 1
+2024-11-09 21:47:39,287 - root - ERROR - Error in main execution: There are multiple `component_instance` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `component_instance` element.
+Traceback (most recent call last):
+  File "/home/tempa/Desktop/mpm_green_2/main.py", line 204, in main
+    display_content_set(all_results, stats={})
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/streamlit_utils.py", line 104, in display_content_set
+    create_image_slideshow(
+  File "/home/tempa/Desktop/mpm_green_2/frontend_utils/diashow.py", line 32, in create_image_slideshow
+    carousel(items=items)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit_carousel/__init__.py", line 123, in carousel
+    _bootstrap_carousel(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/components/v1/custom_component.py", line 58, in __call__
+    return self.create_instance(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/components/v1/custom_component.py", line 220, in create_instance
+    return_value = marshall_component(dg, element)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/components/v1/custom_component.py", line 173, in marshall_component
+    computed_id = compute_and_register_element_id(
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/tempa/Desktop/mpm_green_2/.venv/lib/python3.10/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `component_instance` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `component_instance` element.
+2024-11-09 21:48:33,736 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:48:33,737 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:48:33,739 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:48:33,739 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:48:36,230 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:48:54,345 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:49:26,099 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:49:26,203 - root - INFO - Generated content for section 1
+2024-11-09 21:52:18,561 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:52:18,562 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:52:18,564 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:52:18,564 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:52:21,507 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:52:32,017 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:52:53,988 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:52:54,091 - root - INFO - Generated content for section 1
+2024-11-09 21:55:26,996 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:55:26,998 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:55:26,999 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:55:27,000 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:55:30,347 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:55:39,276 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:56:09,656 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:56:09,831 - root - INFO - Generated content for section 1
+2024-11-09 21:58:22,572 - root - INFO - Chain initialized for platform: instagram
+2024-11-09 21:58:22,573 - root - INFO - Chain initialized for platform: linkedin
+2024-11-09 21:58:22,575 - root - INFO - Chain initialized for platform: blog
+2024-11-09 21:58:22,575 - root - INFO - ContentGenerator initialized with model: gpt-4o
+2024-11-09 21:58:25,447 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:58:37,385 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:59:11,871 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-09 21:59:11,935 - root - INFO - Generated content for section 1
